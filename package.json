@@ -1,20 +1,30 @@
 {
   "name": "evelto-web",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "engines": {
+    "node": "17.3.0",
+    "npm": "8.3.0"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "start:dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "ng build --aot --prod",
+    "heroku-postbuild": "ng build --prod",
+    "deploy:heroku": "git push heroku main"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
+    "@angular/cdk": "^13.2.6",
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
     "@angular/forms": "~13.1.0",
+    "@angular/material": "^13.2.6",
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
