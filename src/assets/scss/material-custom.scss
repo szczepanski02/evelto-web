@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+// Specific component overrides, pieces that are not in line with the general theming
+// Handle buttons appropriately, with respect to line-height
+.mat-raised-button, .mat-stroked-button, .mat-flat-button {
+  padding: 0 1.5em !important;
+  margin: 0 .65em;
+  min-width: 3em;
+  line-height: 36.4px;
+  color: var(--font-light) !important;
+  border-radius: 20px !important;
+}
+
+.mat-standard-chip {
+  padding: .5em .85em;
+  min-height: 2.5em;
+}
+
+.material-icons {
+  font-size: 24px;
+  font-family: 'Material Icons Round', 'Material Icons';  
+  .mat-badge-content {
+    font-family: 'Comfortaa';
+  }
+}
+
+.mat-card {
+  padding: 20px !important;
+  border-radius: var(--border-radius-main) !important;
+  color: var(--font-dark);
+}

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="login-page">
+    <div class="login-page__left-side">
+      <div class="login-page__hello-container">
+        <h1 class="login-page__hello">Hello!</h1>
+      </div>
+      <p class="login-page__p-xl">You dont know how to start?</p>
+      <h1 class="login-page__h1"><span class="login-page__span-primary">Write</span> to us!</h1>
+    </div>
+
+    <mat-card class="login-page__right-side">
+      <mat-card-title>Sign in</mat-card-title>
+      <div class="divider-accent"></div>
+
+      <mat-card-content>
+        <div class="login-page__form-container">
+          <div class="login-page__form">
+            <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
+              <mat-label>email</mat-label>
+              <input matInput placeholder="Email" [(ngModel)]="emailValue" (ngModelChange)="inputValueChanged()">
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
+              <mat-label>password</mat-label>
+              <input matInput type="password" placeholder="Password" [(ngModel)]="passwordValue" (ngModelChange)="inputValueChanged()">
+            </mat-form-field>
+            <div class="login-page__form-actions">
+              <a href="">Recover a password</a>
+              <button mat-raised-button color="accent" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">Sign in</button>
+            </div>
+            <div class="login-page__social-media">
+              <button mat-raised-button class="login-page__button-icon">
+                <img src="../../../../assets/images/icons/google.svg" width="24px" height="24px" alt="">
+                <span class="login-page__button-icon-span">google</span>
+              </button>
+
+              <button mat-raised-button class="login-page__button-icon" (click)="test()">
+                <img src="../../../../assets/images/icons/facebook.svg" width="24px" height="24px" alt="">
+                <span class="login-page__button-icon-span">facebook</span>
+              </button>
+            </div>
+
+            <div class="login-page__create-account">
+              <p>If you dont have an account, you can click a button bottom of this notification</p>
+              <button mat-raised-button color="accent">Create account</button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

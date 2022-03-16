@@ -1,0 +1,16 @@
+<div class="toast-message__wall">
+  <div *ngFor="let message of messages" class="toast-message__container mat-elevation-z8 mat-app-background slide-in-right">
+    <div class="toast-message__content">
+      <div class="toast-message__header" [class]="message.type">
+        <div class="toast-message__title">
+          <h3>{{ message.title }}</h3>
+        </div>
+        <button mat-icon-button (click)="handleMessageDelete(message)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <p>{{ message.content }}</p>
+    </div>
+  </div>
+
+</div>

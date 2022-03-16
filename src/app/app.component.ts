@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { WindowSizeService } from './shared/services/window-size.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(
+    private readonly windowSizeService: WindowSizeService
+  ) {}
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResized(event: any) {
+    this.windowSizeService.resized({ width: event.target.innerWidth, height: event.target.innerHeight });
+  }
 }

@@ -1,0 +1,30 @@
+:root {
+  // background
+  --dark-bg: #162029;
+  --light-bg: #ededed;
+
+  // font colors
+  --font-dark: #162029;
+  --font-light: #ededed;
+
+  // primary
+  --primary: #00C7C7;
+  --primary-light: #11dede;
+  --primary-dark: #009494;
+  --primary-opacity-05: #00c7c778;
+
+  // accent
+  --accent: #3AA0EC;
+  --accent-light: #67b3ed;
+  --accent-dark: #2686cf;
+
+  // other
+  --error: rgb(184, 0, 0);
+  --warn: rgb(255, 230, 0);
+
+  // border radius
+  --border-radius-main: 20px;
+
+  // shadows
+  --box-shadow-main: 0px 4px 4px rgba(0, 0, 0, 0.25)
+}
