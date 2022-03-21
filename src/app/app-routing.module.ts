@@ -1,3 +1,4 @@
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { NonAuthGuard } from './guards/non-auth.guard';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -10,19 +11,27 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
   },
   {
+    path: 'client',
+    loadChildren: () => import('./pages/client/client.module').then(m => m.ClientModule),
+  },
+  {
+    path: 'creator',
+    loadChildren: () => import('./pages/creator/creator.module').then(m => m.CreatorModule),
+  },
+  {
     path: '',
-    component: AppComponent,
-    canActivate: [AuthGuard]
+    component: WelcomePageComponent,
+    canActivate: [NonAuthGuard]
   },
   {
     path: '**',
     redirectTo: '',
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload" })],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard, NonAuthGuard]
 })
 export class AppRoutingModule { }

@@ -1,3 +1,4 @@
+import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
 import { HttpCredentialsInterceptor } from './interceptors/HttpCredentialsInterceptor';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
@@ -8,11 +9,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
-
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -20,11 +22,12 @@ import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpCredentialsInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

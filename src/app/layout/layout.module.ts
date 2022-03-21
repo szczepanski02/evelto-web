@@ -1,18 +1,24 @@
+import { SharedModule } from './../shared/shared.module';
+import { SidenavComponent } from './sidenav/sidenav.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    FooterComponent
+    FooterComponent,
+    SidenavComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    RouterModule
   ],
   exports: [
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ]
 })
 export class LayoutModule { }

@@ -1,35 +1,27 @@
-import { AuthService } from './../shared/services/auth.service';
+import { ToastMessageService } from './../shared/reusable-components/toast-message/toast-message.service';
 import { CanActivate, Router } from "@angular/router";
-import { catchError, map, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { toastMessageType } from '../shared/constants/toastMessageType';
 
 @Injectable({ providedIn: 'root' })
 export class NonAuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private readonly toastMessageService: ToastMessageService,
     private router: Router
   ) {}
 
-  canActivate(): Observable<boolean> {
-    return this.userHasAccess();
-  }
-
-  userHasAccess(): Observable<boolean> {
-    return this.authService.getUserFromToken().pipe(
-      map(response => {
-        this.router.navigate(['/']);
+  canActivate(): boolean {
+    const accessToken = localStorage.getItem('access_token');
+    if(accessToken) {
+      if(this.router.url === '/') {
+        this.router.navigate(['/creator/home']);
         return false;
-      }),
-      catchError(() => {
-        console.log(this.router.url);
-        if(this.router.url !== '/auth/login') {
-          this.router.navigate(['/auth/login']);
-          return of(true);
-        }
-        this.router.navigate(['/auth/login']);
-        return of(false);
-      })
-    )
+      }
+      this.router.navigate(['/creator/home']);
+      this.toastMessageService.setMessage('Authorization', 'You are already logged in', toastMessageType.WARN, 5);
+      return false;
+    }
+    return true;
   }
 
 }

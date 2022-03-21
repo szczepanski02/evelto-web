@@ -1,0 +1,124 @@
+<div class="profile flip-in-hor-bottom">
+
+  <div class="row">
+    <mat-card class="profile__main">
+      <h2>Main account properties</h2>
+      <div class="divider-accent"></div>
+      <div class="profile__form">
+        <div class="profile__bar">
+          <button mat-raised-button color="accent" (click)="changeMainEditModeState()">{{ mainEditModeEnabled ? 'Save changes' : 'Edit mode' }}</button>
+          <button mat-raised-button color="warn">Reset values</button>
+        </div>
+        <div class="profile__col">
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="Username"
+              [(ngModel)]="usernameValue"
+              (ngModelChange)="inputValueChanged()"
+              [disabled]="!mainEditModeEnabled"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              [(ngModel)]="emailValue"
+              (ngModelChange)="inputValueChanged()"
+              [disabled]="!mainEditModeEnabled"
+            >
+          </mat-form-field>
+        </div>
+        <div class="profile__col">
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>First name</mat-label>
+            <input
+              matInput
+              placeholder="First name"
+              [(ngModel)]="firstNameValue"
+              (ngModelChange)="inputValueChanged()"
+              [disabled]="!mainEditModeEnabled"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Last name</mat-label>
+            <input
+              matInput
+              placeholder="Last name"
+              [(ngModel)]="lastNameValue"
+              (ngModelChange)="inputValueChanged()"
+              [disabled]="!mainEditModeEnabled"
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="profile__details">
+      <h2>Details</h2>
+      <div class="divider-accent"></div>
+      <div class="profile__form">
+        <div class="profile__bar">
+          <button mat-raised-button color="accent" (click)="changeDetailsEditModeState()">{{ detailsEditModeEnabled ? 'Save changes' : 'Edit mode' }}</button>
+          <button mat-raised-button color="warn">Reset values</button>
+        </div>
+
+        <div class="profile__col">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Date of birth</mat-label>
+              <input
+                matInput
+                [min]="minBirthDate"
+                [max]="maxBirthDate"
+                [matDatepicker]="picker"
+                [(ngModel)]="birthDateValue"
+                (ngModelChange)="inputValueChanged()"
+                [disabled]="!detailsEditModeEnabled"
+              >
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <div>
+            <h3>There will be a profile img editor</h3>
+          </div>
+        </div>
+
+        <div class="profile__col">
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <select
+              matNativeControl
+              required
+              [(ngModel)]="genderValue"
+              (ngModelChange)="inputValueChanged()"
+              [disabled]="!detailsEditModeEnabled"
+            >
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="row-2">
+    <mat-card class="profile__creator">
+      <h2>Creator settings</h2>
+      <div class="divider-accent"></div>
+    </mat-card>
+
+    <mat-card class="profile__sessions">
+      <h2>Sessions</h2>
+      <div class="divider-accent"></div>
+    </mat-card>
+  </div>
+
+</div>

@@ -3,26 +3,17 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 import { toastMessageType } from "../shared/constants/toastMessageType";
 import { ToastMessageService } from "../shared/reusable-components/toast-message/toast-message.service";
-import { Router } from "@angular/router";
-import { AuthService } from "../shared/services/auth.service";
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   
-  constructor(private toastMessageService: ToastMessageService, private router: Router) {}
+  constructor(
+    private toastMessageService: ToastMessageService
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        if(err.status === 401) {
-          if(this.router.url === '/auth/login') {
-            this.toastMessageService.setMessage('Authentication', err.error.message, toastMessageType.ERROR, 5);
-            return of(true);
-          }
-          this.router.navigate(['/auth/login']);
-          this.toastMessageService.setMessage('Authentication', 'Please sign in to continue', toastMessageType.ERROR, 5);
-          return of(true)
-        }
         if(err.status === 403) {
           if(err.error.message) {
             this.toastMessageService.setMessage('Authentication', err.error.message, toastMessageType.ERROR, 5);

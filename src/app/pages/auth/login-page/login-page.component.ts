@@ -1,8 +1,7 @@
 import { Subscription } from 'rxjs';
-import { ToastMessageService } from './../../../shared/reusable-components/toast-message/toast-message.service';
 import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { toastMessageType } from 'src/app/shared/constants/toastMessageType';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-page',
@@ -11,6 +10,8 @@ import { toastMessageType } from 'src/app/shared/constants/toastMessageType';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
+  private api = `${environment.apiUrl}/auth`;
+
   emailValue = '';
   passwordValue = '';
   isSubmitButtonActive = false;
@@ -18,7 +19,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly toastMessageService: ToastMessageService
   ) { }
 
   ngOnInit(): void {
@@ -38,16 +38,17 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   localStrategyLoginSubmit(): void {
     const payload = { email: this.emailValue, password: this.passwordValue };
-    this.localAuthSubscription = this.authService.login(payload).subscribe(response => {
-      console.log(response);
-      this.toastMessageService.setMessage('Authorization', 'Sign in success', toastMessageType.INFO, 5);
-    });
+    this.authService.login(payload);
   }
 
-  test(): void {
-    this.authService.getUserFromToken().subscribe(response => {
-      console.log(response);
-    })
+  googleStrategyLoginSubmit(): void {
+    window.open(`${this.api}/auth-google`, "_self");
+  }
+
+  handleKeyUp(e: any) {
+    if(e.keyCode === 13 && this.isSubmitButtonActive){
+      this.localStrategyLoginSubmit();
+   }
   }
 
 }

@@ -9,7 +9,7 @@ import { ShowIfBetweenWidthDirective } from './directives/show-if-between-width.
 @NgModule({
   declarations: [
     ToastMessageComponent,
-    ShowIfBetweenWidthDirective
+    ShowIfBetweenWidthDirective,
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { ShowIfBetweenWidthDirective } from './directives/show-if-between-width.
   exports: [
     MaterialModule,
     ToastMessageComponent,
-    ShowIfBetweenWidthDirective
+    ShowIfBetweenWidthDirective,
   ]
 })
 export class SharedModule { }

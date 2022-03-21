@@ -1,0 +1,57 @@
+<div class="sidenav">
+  <div class="sidenav__nav slide-in-left">
+    <div class="sidenav__items">
+      <div class="sidenav__item" id="search">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/search.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="home" [routerLink]="['creator/home']">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/home.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="histogram">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/chart-histogram.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="profile" [routerLink]="['creator/profile']">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/user.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="apps">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/apps.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="dollar">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/dollar.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="envelope">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/envelope.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="shopping-card">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/shopping-cart.svg" width="28px" height="28px" alt="">
+      </div>
+      <div class="sidenav__item" id="browser">
+        <div class="active__corner-top"></div>
+        <div class="active__corner-bottom"></div>
+        <img src="../../../assets/images/icons/browser.svg" width="28px" height="28px" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="sidenav__router">
+    <div class="container">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

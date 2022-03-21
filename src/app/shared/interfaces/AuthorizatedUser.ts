@@ -1,3 +1,4 @@
+import { ClientIsActive } from './../constants/client-is-active';
 import { AccountType } from './../constants/account-type';
 import { Lang } from './../constants/lang';
 
@@ -8,4 +9,5 @@ export interface IAuthorizatedUser {
   lastName: string;
   lang: Lang;
   accountType: AccountType;
+  isActive: ClientIsActive;
 }
