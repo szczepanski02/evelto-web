@@ -1,17 +1,17 @@
 // entraces
 
-.flip-in-hor-bottom {
-  animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-@keyframes flip-in-hor-bottom {
+@keyframes slide-in-right {
   0% {
-    transform: rotateX(80deg);
+    transform: translateX(1000px);
     opacity: 0;
   }
 
   100% {
-    transform: rotateX(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }

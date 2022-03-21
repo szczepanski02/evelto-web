@@ -1,0 +1,32 @@
+.topbar {
+  background-color: var(--dark-bg);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  color: #fff;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    justify-content: space-between;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+}

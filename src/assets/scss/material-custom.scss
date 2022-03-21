@@ -2,7 +2,9 @@
 
 // Specific component overrides, pieces that are not in line with the general theming
 // Handle buttons appropriately, with respect to line-height
-.mat-raised-button, .mat-stroked-button, .mat-flat-button {
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button {
   padding: 0 1.5em !important;
   margin: 0 .65em;
   min-width: 3em;
@@ -18,7 +20,8 @@
 
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons Round', 'Material Icons';  
+  font-family: 'Material Icons Round', 'Material Icons';
+
   .mat-badge-content {
     font-family: 'Comfortaa';
   }
@@ -28,4 +31,10 @@
   padding: 20px !important;
   border-radius: var(--border-radius-main) !important;
   color: var(--font-dark);
+}
+
+mat-icon {
+  width: 28px !important;
+  height: 28px !important;
+  font-size: 28px !important;
 }
