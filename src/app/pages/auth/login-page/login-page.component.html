@@ -29,12 +29,12 @@
               <button mat-raised-button color="accent" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">Sign in</button>
             </div>
             <div class="login-page__social-media">
-              <button mat-raised-button class="login-page__button-icon" (click)="googleStrategyLoginSubmit()">
+              <button mat-button class="login-page__button-icon" (click)="googleStrategyLoginSubmit()">
                 <img src="../../../../assets/images/icons/google.svg" width="24px" height="24px" alt="">
                 <span class="login-page__button-icon-span">google</span>
               </button>
 
-              <button mat-raised-button class="login-page__button-icon" disabled="true">
+              <button mat-button class="login-page__button-icon" disabled="true">
                 <img src="../../../../assets/images/icons/facebook.svg" width="24px" height="24px" alt="">
                 <span class="login-page__button-icon-span">facebook</span>
               </button>
@@ -42,7 +42,7 @@
 
             <div class="login-page__create-account">
               <p>If you dont have an account, you can click a button bottom of this notification</p>
-              <button mat-raised-button color="accent" disabled="true">Create account</button>
+              <button mat-button color="accent" disabled="true">Create account</button>
             </div>
           </div>
         </div>

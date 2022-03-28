@@ -10,7 +10,7 @@
   min-width: 3em;
   line-height: 36.4px;
   color: var(--font-light) !important;
-  border-radius: 20px !important;
+  border-radius: 10px !important;
 }
 
 .mat-standard-chip {
@@ -30,7 +30,7 @@
 .mat-card {
   padding: 20px !important;
   border-radius: var(--border-radius-main) !important;
-  color: var(--font-dark);
+  color: var(--font-light);
 }
 
 mat-icon {

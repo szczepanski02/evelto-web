@@ -1,29 +1,29 @@
 :root {
   // background
-  --dark-bg: #162029;
-  --light-bg: #ededed;
+  --dark-bg: #191A1F;
+  --darken-bg: #131217;
 
   // font colors
-  --font-dark: #162029;
+  --font-dark: #191A1F;
   --font-light: #ededed;
 
   // primary
-  --primary: #00C7C7;
-  --primary-light: #11dede;
-  --primary-dark: #009494;
-  --primary-opacity-05: #00c7c778;
+  --primary: #d24d57;
+  --primary-light: #d16069;
+  --primary-dark: #cf404c;
+  --primary-opacity-05: #d24d587e;
 
   // accent
-  --accent: #3AA0EC;
-  --accent-light: #67b3ed;
-  --accent-dark: #2686cf;
+  --accent: #038aff;
+  --accent-light: #2696f9;
+  --accent-dark: #0076dd;
 
   // other
   --error: rgb(184, 0, 0);
   --warn: rgb(255, 230, 0);
 
   // border radius
-  --border-radius-main: 20px;
+  --border-radius-main: 10px;
 
   // shadows
   --box-shadow-main: 0px 4px 4px rgba(0, 0, 0, 0.25)

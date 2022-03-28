@@ -28,11 +28,13 @@ body {
 .divider-accent {
   @include dividerSetup;
   background-color: var(--accent);
+  border-radius: 10px;
 }
 
 .divider-primary {
   @include dividerSetup;
   background-color: var(--primary);
+  border-radius: 10px;
 }
 
 .bg-dark {
@@ -40,7 +42,7 @@ body {
   color: var(--font-light);
 }
 
-.bg-light {
-  background-color: var(--light-bg);
-  color: var(--font-dark);
+.bg-darken {
+  background-color: var(--darken-bg);
+  color: var(--font-light);
 }

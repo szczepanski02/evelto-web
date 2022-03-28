@@ -6,7 +6,7 @@
   justify-content: space-between;
 
   &__hello-container {
-    background-color: var(--light-bg);
+    background-color: #d0d0d0;
     height: 70px;
     display: flex;
     align-items: center;
@@ -62,7 +62,7 @@
     align-items: center;
 
     & a {
-      color: var(--font-dark);
+      color: var(--font-light);
     }
   }
 
@@ -92,6 +92,7 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+
     & p {
       text-align: justify;
       overflow-wrap: break-word;
@@ -99,4 +100,3 @@
   }
 
 }
-
