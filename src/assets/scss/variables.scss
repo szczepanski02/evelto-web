@@ -1,7 +1,8 @@
 :root {
   // background
-  --dark-bg: #191A1F;
-  --darken-bg: #131217;
+  --dark-bg: #141b23;
+  --lighten-bg: #161e27;
+  --darken-bg: #0f141a;
 
   // font colors
   --font-dark: #191A1F;
@@ -18,9 +19,20 @@
   --accent-light: #2696f9;
   --accent-dark: #0076dd;
 
+  // primary green
+  --primary-green: #1dd1a1;
+  --primary-green-light: #33e7b7;
+  --primary-green-dark: #12ae84;
+
+  // primary yellow
+  --primary-yellow: #f6b93b;
+  --primary-yellow-light: #f5bf55;
+  --primary-yellow-dark: #dfa532;
+
   // other
-  --error: rgb(184, 0, 0);
-  --warn: rgb(255, 230, 0);
+  --success: var(--accent);
+  --error: var(--primary);
+  --warn: var(--primary-yellow);
 
   // border radius
   --border-radius-main: 10px;

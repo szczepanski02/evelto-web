@@ -1,3 +1,4 @@
+import { SharedTranslateModule } from './shared-translate.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './ng-material.module';
@@ -13,12 +14,12 @@ import { ShowIfBetweenWidthDirective } from './directives/show-if-between-width.
   ],
   imports: [
     CommonModule,
-    MaterialModule,
+    MaterialModule
   ],
   exports: [
     MaterialModule,
     ToastMessageComponent,
-    ShowIfBetweenWidthDirective,
+    ShowIfBetweenWidthDirective
   ]
 })
 export class SharedModule { }

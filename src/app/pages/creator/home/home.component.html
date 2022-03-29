@@ -1,4 +1,8 @@
 <div class="home slide-in-right">
-  <h2>Authorizated creator account!</h2>
-  <button mat-raised-button color="primary" (click)="logout()">logout</button>
+
+  <p>{{ 'buttons.save' | translate }}</p>
+
+  <button mat-raised-button (click)="switchLang('pl')">Set PL</button>
+  <button mat-raised-button (click)="switchLang('en')">Set EN</button>
+
 </div>

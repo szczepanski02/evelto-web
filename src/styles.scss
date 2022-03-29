@@ -25,16 +25,30 @@ body {
   margin-top: 20px;
 }
 
-.divider-accent {
-  @include dividerSetup;
-  background-color: var(--accent);
-  border-radius: 10px;
-}
+.divider {
+  &-primary {
+    @include dividerSetup;
+    background-color: var(--primary);
+    border-radius: 10px;
+  }
 
-.divider-primary {
-  @include dividerSetup;
-  background-color: var(--primary);
-  border-radius: 10px;
+  &-accent {
+    @include dividerSetup;
+    background-color: var(--accent);
+    border-radius: 10px;
+  }
+
+  &-primary-green {
+    @include dividerSetup;
+    background-color: var(--primary-green);
+    border-radius: 10px;
+  }
+
+  &-primary-yellow {
+    @include dividerSetup;
+    background-color: var(--primary-yellow);
+    border-radius: 10px;
+  }
 }
 
 .bg-dark {

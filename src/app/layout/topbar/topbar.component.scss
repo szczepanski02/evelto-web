@@ -1,9 +1,11 @@
 .topbar {
-  background-color: var(--dark-bg);
+  background-color: var(--darken-bg);
   position: fixed;
   top: 0;
-  z-index: 1000;
   color: #fff;
+  width: calc(100% - 76px);
+  right: 0;
+  z-index: 100;
 
   &__left {
     display: flex;

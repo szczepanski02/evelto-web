@@ -14,6 +14,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
+        if(err.status === 401) {
+          return next.handle(req).pipe();
+        }
         if(err.status === 403) {
           if(err.error.message) {
             this.toastMessageService.setMessage('Authentication', err.error.message, toastMessageType.ERROR, 5);

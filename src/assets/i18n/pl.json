@@ -1,0 +1,10 @@
+{
+  "buttons": {
+    "create": "Stwórz",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "update": "Zaktualizuj",
+    "cancel": "Anuluj",
+    "edit": "Edytuj"
+  }
+}

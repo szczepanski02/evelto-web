@@ -1,4 +1,4 @@
-import { AuthService } from './../../../shared/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private readonly authService: AuthService) { }
+  constructor(private translateService: TranslateService) { }
 
   ngOnInit(): void {
   }
 
-  logout(): void {
-    this.authService.logout();
+  switchLang(lang: string) {
+    this.translateService.use(lang);
   }
 
 }

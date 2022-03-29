@@ -1,15 +1,16 @@
 <div class="mat-typography">
   <div class="authenticated" *ngIf="isAuthorizated">
+    <app-topbar></app-topbar>
     <app-sidenav>
       <router-outlet *ngIf="isAuthorizated"></router-outlet>
     </app-sidenav>
   </div>
-  
+
   <div class="no-authenticated" *ngIf="!isAuthorizated">
-      <router-outlet *ngIf="!isAuthorizated"></router-outlet>
+    <router-outlet *ngIf="!isAuthorizated"></router-outlet>
   </div>
-  
-  
+
+
   <app-toast-message></app-toast-message>
   <!-- <app-footer></app-footer> -->
 </div>

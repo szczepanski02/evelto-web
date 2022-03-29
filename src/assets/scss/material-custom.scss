@@ -5,7 +5,7 @@
 .mat-raised-button,
 .mat-stroked-button,
 .mat-flat-button {
-  padding: 0 1.5em !important;
+  padding: 5px 1.5em !important;
   margin: 0 .65em;
   min-width: 3em;
   line-height: 36.4px;
@@ -37,4 +37,23 @@ mat-icon {
   width: 28px !important;
   height: 28px !important;
   font-size: 28px !important;
+}
+
+// color classes
+.mat-primary-green-btn {
+  background-color: var(--primary-green-dark);
+  color: #fff;
+}
+
+.mat-primary-yellow-btn {
+  background-color: var(--primary-yellow-dark);
+  color: #fff;
+}
+
+.mat-primary-green-color {
+  color: var(--primary-green) !important;
+}
+
+.mat-primary-yellow-color {
+  color: var(--primary-yellow) !important;
 }

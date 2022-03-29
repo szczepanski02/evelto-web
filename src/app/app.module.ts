@@ -1,3 +1,4 @@
+import { SharedTranslateModule } from './shared/shared-translate.module';
 import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
 import { HttpCredentialsInterceptor } from './interceptors/HttpCredentialsInterceptor';
 import { LayoutModule } from './layout/layout.module';
@@ -11,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,12 +23,14 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedTranslateModule,
     SharedModule,
     LayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpCredentialsInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

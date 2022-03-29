@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
+import { TopbarDropdownComponent } from './topbar/topbar-dropdown/topbar-dropdown.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { TopbarComponent } from './topbar/topbar.component';
     FooterComponent,
     SidenavComponent,
     TopbarComponent,
+    TopbarDropdownComponent,
   ],
   imports: [
     CommonModule,
