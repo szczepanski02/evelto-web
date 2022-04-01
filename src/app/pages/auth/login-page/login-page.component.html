@@ -1,5 +1,5 @@
-<div class="container slide-in-right">
-  <div class="login-page">
+<div class="container">
+  <div class="login-page slide-in-right">
     <div class="login-page__left-side">
       <div class="login-page__hello-container">
         <h1 class="login-page__hello">{{ 'auth.hello' | translate }}</h1>
@@ -42,7 +42,7 @@
 
             <div class="login-page__create-account">
               <p>{{ 'auth.createAccMessage' | translate }}</p>
-              <button mat-button color="accent" disabled="true">{{ 'auth.createAccBtn' | translate }}</button>
+              <button mat-raised-button color="accent" [routerLink]="['/auth/create-account']">{{ 'auth.createAccBtn' | translate }}</button>
             </div>
           </div>
         </div>

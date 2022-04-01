@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
 import { ICreator } from './../../../shared/interfaces/ICreator';
 import { UserService } from './../../../shared/services/user.service';
-import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ClientIsActive } from 'src/app/shared/constants/client-is-active';
 
@@ -32,7 +31,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   sessionsEditModeEnabled = false;
 
   constructor(
-    private readonly authService: AuthService,
     private readonly userService: UserService
   ) { }
 

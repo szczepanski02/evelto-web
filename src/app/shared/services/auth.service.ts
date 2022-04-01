@@ -1,3 +1,5 @@
+import { Lang } from './../constants/lang';
+import { Gender } from './../constants/gender';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../reusable-components/toast-message/toast-message.service';
 import { JwtService } from './jwt.service';
@@ -11,15 +13,18 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { toastMessageType } from '../constants/toastMessageType';
 import { AccountType } from '../constants/account-type';
+import { CountriesEnum } from '../constants/countries';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private api = `${environment.apiUrl}/auth`;
 
   private authorizatedUser?: IAuthorizatedUser;
-  private isAuthorizated: Subject<boolean> = new BehaviorSubject<boolean>(false);
+  private isAuthorizated: Subject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   private _redirectLs = 'redirect_to';
 
@@ -29,24 +34,49 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly toastMessageService: ToastMessageService,
     private readonly translateService: TranslateService
-  ) { }
+  ) {}
 
   login(payload: ILoginPayload): void {
-    this.http.post<ISuccessResponse<ITokens>>(`${this.api}/login`, payload).subscribe(response => {
-      this.loginSuccessHandler(response.body);
-    });
+    this.http
+      .post<ISuccessResponse<ITokens>>(`${this.api}/login`, payload)
+      .subscribe((response) => {
+        this.loginSuccessHandler(response.body);
+      });
+  }
+
+  register(payload: IRegisterPayload): void {
+    this.http
+      .post<ISuccessResponse<string>>(`${this.api}/register`, payload)
+      .subscribe((response) => {
+        this.toastMessageService.setMessage(
+          this.translateService.instant('auth.notificationTitle'),
+          response.body,
+          toastMessageType.INFO,
+          5
+        );
+      });
   }
 
   loginSuccessHandler(data: ITokens) {
-    if(data.accountType !== AccountType.CREATOR) {
-      this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.notCreator'), toastMessageType.ERROR, 5);
-      if(this.router.url !== '/auth/login') {
+    if (data.accountType !== AccountType.CREATOR) {
+      this.toastMessageService.setMessage(
+        this.translateService.instant('auth.notificationTitle'),
+        this.translateService.instant('auth.notCreator'),
+        toastMessageType.ERROR,
+        5
+      );
+      if (this.router.url !== '/auth/login') {
         this.router.navigate(['/auth/login']);
       }
       return;
     }
     this.setSession(data.access_token, data.refresh_token);
-    this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.signSuccess'), toastMessageType.INFO, 5);
+    this.toastMessageService.setMessage(
+      this.translateService.instant('auth.notificationTitle'),
+      this.translateService.instant('auth.signSuccess'),
+      toastMessageType.INFO,
+      5
+    );
     this.redirect(true);
   }
 
@@ -55,7 +85,9 @@ export class AuthService {
   }
 
   getUserFromToken(): Observable<ISuccessResponse<IAuthorizatedUser>> {
-    return this.http.get<ISuccessResponse<IAuthorizatedUser>>(`${this.api}/authorize`);
+    return this.http.get<ISuccessResponse<IAuthorizatedUser>>(
+      `${this.api}/authorize`
+    );
   }
 
   logout(): Observable<ISuccessResponse<string>> | void {
@@ -64,13 +96,19 @@ export class AuthService {
     this.jwtService.setRefreshToken(null);
     this.router.navigate(['/auth/login']);
     this.setIsAuthorizated(false);
-    if(refresh_token) {
-      this.http.post<ISuccessResponse<string>>(`${this.api}/logout`, { refresh_token } ).subscribe().unsubscribe();
+    if (refresh_token) {
+      this.http
+        .post<ISuccessResponse<string>>(`${this.api}/logout`, { refresh_token })
+        .subscribe()
+        .unsubscribe();
     }
   }
 
   isCreator(): boolean {
-    if(this.authorizatedUser && this.authorizatedUser.accountType === AccountType.CREATOR) {
+    if (
+      this.authorizatedUser &&
+      this.authorizatedUser.accountType === AccountType.CREATOR
+    ) {
       return true;
     }
     return false;
@@ -84,18 +122,25 @@ export class AuthService {
 
   refreshSession(): Observable<ISuccessResponse<ITokens>> {
     const refresh_token = this.jwtService.getRefreshToken();
-    return this.http.post<ISuccessResponse<ITokens>>(`${this.api}/refresh`, { refresh_token } );
+    return this.http.post<ISuccessResponse<ITokens>>(`${this.api}/refresh`, {
+      refresh_token,
+    });
   }
 
   redirectToLoginPage(): void {
     this.router.navigate(['/auth/login']);
-    this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.signInToContinue'), toastMessageType.ERROR, 5);
+    this.toastMessageService.setMessage(
+      this.translateService.instant('auth.notificationTitle'),
+      this.translateService.instant('auth.signInToContinue'),
+      toastMessageType.ERROR,
+      5
+    );
   }
 
   redirect(includeLSItem: boolean): void {
     const redirectUrl = localStorage.getItem(this._redirectLs);
-    if(redirectUrl && includeLSItem) {
-      this.router.navigate([`${ redirectUrl }`]);
+    if (redirectUrl && includeLSItem) {
+      this.router.navigate([`${redirectUrl}`]);
       this.deleteRedirectUrl();
     } else {
       this.router.navigate(['/creator/home']);
@@ -113,7 +158,7 @@ export class AuthService {
   deleteRedirectUrl(): void {
     localStorage.removeItem(this._redirectLs);
   }
-  
+
   // getters and setters
   getIsAuthorizated(): Observable<boolean> {
     return this.isAuthorizated.asObservable();
@@ -124,7 +169,7 @@ export class AuthService {
   }
 
   getAuthorizatedUser(): IAuthorizatedUser | null {
-    if(this.authorizatedUser) {
+    if (this.authorizatedUser) {
       return this.authorizatedUser;
     }
     return null;
@@ -133,7 +178,6 @@ export class AuthService {
   setAuthorizatedUser(data: IAuthorizatedUser): void {
     this.authorizatedUser = data;
   }
-
 }
 
 export interface ITokens {
@@ -145,4 +189,21 @@ export interface ITokens {
 export interface ILoginPayload {
   email: string;
   password: string;
+}
+
+export interface IRegisterPayload {
+  accountType: AccountType;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+  profileImg: string;
+  birthDate: Date;
+  gender: Gender;
+  country: CountriesEnum;
+  city: string;
+  zipCode: string;
+  address1: string;
+  lang: Lang;
 }

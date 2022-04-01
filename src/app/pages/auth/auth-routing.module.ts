@@ -1,3 +1,4 @@
+import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,8 +8,8 @@ import { ThirdPartAuthGuard } from 'src/app/guards/third-part-auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login' },
   { path: 'login', component: LoginPageComponent, canActivate: [NonAuthGuard] },
-
-  { path: 'third-part-auth/redirect', canActivate: [ThirdPartAuthGuard] }
+  { path: 'third-part-auth/redirect', canActivate: [ThirdPartAuthGuard] },
+  { path: 'create-account', component: RegisterPageComponent, canActivate: [NonAuthGuard] }
 ];
 
 @NgModule({

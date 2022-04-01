@@ -9,13 +9,17 @@
   height: 3px;
 }
 
+:root {
+  overflow-x: hidden !important;
+}
+
 body {
   background-color: var(--dark-bg);
   color: var(--font-light);
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   overflow-x: hidden !important;
+  box-sizing: border-box;
 }
 
 .container {
@@ -23,6 +27,7 @@ body {
   margin: 0 auto;
   padding: 15px;
   margin-top: 20px;
+  box-sizing: border-box;
 }
 
 .divider {
@@ -59,4 +64,9 @@ body {
 .bg-darken {
   background-color: var(--darken-bg);
   color: var(--font-light);
+}
+
+h1,
+h2 {
+  margin-bottom: 5px !important;
 }
