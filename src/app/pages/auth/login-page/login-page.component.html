@@ -2,14 +2,14 @@
   <div class="login-page">
     <div class="login-page__left-side">
       <div class="login-page__hello-container">
-        <h1 class="login-page__hello">Hello!</h1>
+        <h1 class="login-page__hello">{{ 'auth.hello' | translate }}</h1>
       </div>
-      <p class="login-page__p-xl">You dont know how to start?</p>
-      <h1 class="login-page__h1"><span class="login-page__span-primary">Write</span> to us!</h1>
+      <p class="login-page__p-xl">{{ 'auth.subHelloTitle' | translate }}</p>
+      <h1 class="login-page__h1"><span class="login-page__span-primary">{{ 'auth.writeToUsP1' | translate }}</span> {{ 'auth.writeToUsP2' | translate }}</h1>
     </div>
 
     <mat-card class="login-page__right-side">
-      <mat-card-title>Sign in</mat-card-title>
+      <mat-card-title>{{ 'auth.signIn' | translate }}</mat-card-title>
       <div class="divider-accent"></div>
 
       <mat-card-content (keyup)="handleKeyUp($event)">
@@ -21,12 +21,12 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
-              <mat-label>password</mat-label>
-              <input matInput type="password" placeholder="Password" [(ngModel)]="passwordValue" (ngModelChange)="inputValueChanged()">
+              <mat-label>{{ 'auth.password' | translate }}</mat-label>
+              <input matInput type="password" placeholder="{{ 'auth.subHelloTitle' | translate }}" [(ngModel)]="passwordValue" (ngModelChange)="inputValueChanged()">
             </mat-form-field>
             <div class="login-page__form-actions">
-              <a href="">Recover a password</a>
-              <button mat-raised-button color="primary-green-btn" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">Sign in</button>
+              <a href="">{{ 'auth.recoverPassword' | translate }}</a>
+              <button mat-raised-button color="primary-green-btn" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">{{ 'auth.signIn' | translate }}</button>
             </div>
             <div class="login-page__social-media">
               <button mat-raised-button color="primary-yellow-btn" class="login-page__button-icon" (click)="googleStrategyLoginSubmit()">
@@ -41,8 +41,8 @@
             </div>
 
             <div class="login-page__create-account">
-              <p>If you dont have an account, you can click a button bottom of this notification</p>
-              <button mat-button color="accent" disabled="true">Create account</button>
+              <p>{{ 'auth.createAccMessage' | translate }}</p>
+              <button mat-button color="accent" disabled="true">{{ 'auth.createAccBtn' | translate }}</button>
             </div>
           </div>
         </div>

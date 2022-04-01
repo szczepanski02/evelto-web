@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../../../shared/reusable-components/toast-message/toast-message.service';
 import { Lang } from './../../../shared/constants/lang';
 import { LangService } from './../../../shared/services/lang.service';
@@ -23,7 +24,8 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
   constructor(
     private readonly authService: AuthService,
     private readonly langService: LangService,
-    private readonly toastMessageService: ToastMessageService
+    private readonly toastMessageService: ToastMessageService,
+    private readonly translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -48,11 +50,14 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
     this.settedLang = String(lang);
     this.langService.setLang(lang);
     this.toastMessageService.setMessage(
-      'Application',
-      `Lang has been changed to: ${lang} successfully`,
+      this.translateService.instant('lang.notificationTitle'),
+      this.translateService.instant('lang.changed', { lang }),
       toastMessageType.INFO,
       5
     );
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
   }
 
 }

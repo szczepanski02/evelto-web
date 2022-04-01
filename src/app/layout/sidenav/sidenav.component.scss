@@ -21,6 +21,10 @@
 
   &__items {
     padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 120px);
   }
 
   &__item {

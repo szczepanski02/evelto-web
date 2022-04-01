@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
@@ -8,7 +9,8 @@ import { ToastMessageService } from "../shared/reusable-components/toast-message
 export class HttpErrorInterceptor implements HttpInterceptor {
   
   constructor(
-    private toastMessageService: ToastMessageService
+    private readonly toastMessageService: ToastMessageService,
+    private readonly translateService: TranslateService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -19,10 +21,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         }
         if(err.status === 403) {
           if(err.error.message) {
-            this.toastMessageService.setMessage('Authentication', err.error.message, toastMessageType.ERROR, 5);
+            this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), err.error.message, toastMessageType.ERROR, 5);
             return of(true)
           }
-          this.toastMessageService.setMessage('Authorization', 'You are not authorized to perform this operation', toastMessageType.ERROR, 5);
+          this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.noAuthorized'), toastMessageType.ERROR, 5);
           return of(true)
         }
         if(err.error.message && (err.status !== 403 && err.status !== 401)) {

@@ -1,3 +1,4 @@
+import { HttpLangInterceptor } from './interceptors/HttpLangInterceptor';
 import { SharedTranslateModule } from './shared/shared-translate.module';
 import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
 import { HttpCredentialsInterceptor } from './interceptors/HttpCredentialsInterceptor';
@@ -30,6 +31,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpCredentialsInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpLangInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

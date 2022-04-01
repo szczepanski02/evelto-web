@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../shared/reusable-components/toast-message/toast-message.service';
 import { Injectable } from "@angular/core";
 import {
@@ -22,7 +23,8 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
     private readonly jwtService: JwtService,
-    private readonly toastMessageService: ToastMessageService
+    private readonly toastMessageService: ToastMessageService,
+    private readonly translateService: TranslateService
   ) {}
 
   intercept(
@@ -42,11 +44,11 @@ export class TokenInterceptor implements HttpInterceptor {
       }
       if(error instanceof HttpErrorResponse && error.status === 401) {
         if(request.url.indexOf('/login') !== -1) { // for sing in error - blocking auto /refresh request
-          this.toastMessageService.setMessage('Authorization', error.error.message, toastMessageType.ERROR, 5);
+          this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), error.error.message, toastMessageType.ERROR, 5);
           return of(true);
         }
         if(error.error.message && error.error.message === 'Unauthorizated') {
-          this.toastMessageService.setMessage('Authorization', error.error.message, toastMessageType.ERROR, 5);
+          this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), error.error.message, toastMessageType.ERROR, 5);
           return of(true);
         }
         return this.handle401error(request, next);

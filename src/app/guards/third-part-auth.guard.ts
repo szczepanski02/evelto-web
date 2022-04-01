@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './../shared/services/auth.service';
 import { ToastMessageService } from './../shared/reusable-components/toast-message/toast-message.service';
 import { ActivatedRouteSnapshot, CanActivate } from "@angular/router";
@@ -8,7 +9,8 @@ import { toastMessageType } from '../shared/constants/toastMessageType';
 export class ThirdPartAuthGuard implements CanActivate {
   constructor(
     private readonly toastMessageService: ToastMessageService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly translateService: TranslateService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
@@ -22,7 +24,12 @@ export class ThirdPartAuthGuard implements CanActivate {
         return false;
       } else {
         this.authService.redirectToLoginPage();
-        this.toastMessageService.setMessage('Authorization', 'Error at login via google, please contact with support', toastMessageType.ERROR, 5);
+        this.toastMessageService.setMessage(
+          this.translateService.instant('auth.notificationTitle'),
+          this.translateService.instant('auth.signInViaGoogleError'),
+          toastMessageType.ERROR,
+          5
+        );
         return false;
       }
   }

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../shared/reusable-components/toast-message/toast-message.service';
 import { CanActivate, Router } from "@angular/router";
 import { Injectable } from '@angular/core';
@@ -7,7 +8,8 @@ import { toastMessageType } from '../shared/constants/toastMessageType';
 export class NonAuthGuard implements CanActivate {
   constructor(
     private readonly toastMessageService: ToastMessageService,
-    private router: Router
+    private router: Router,
+    private readonly translateService: TranslateService
   ) {}
 
   canActivate(): boolean {
@@ -18,7 +20,12 @@ export class NonAuthGuard implements CanActivate {
         return false;
       }
       this.router.navigate(['/creator/home']);
-      this.toastMessageService.setMessage('Authorization', 'You are already logged in', toastMessageType.WARN, 5);
+      this.toastMessageService.setMessage(
+        this.translateService.instant('auth.notificationTitle'),
+        this.translateService.instant('auth.alreadyLoggedIn'),
+        toastMessageType.WARN,
+        5
+      );
       return false;
     }
     return true;

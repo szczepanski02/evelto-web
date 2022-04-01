@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../shared/reusable-components/toast-message/toast-message.service';
 import { IAuthorizatedUser } from './../shared/interfaces/AuthorizatedUser';
 import { AuthService } from './../shared/services/auth.service';
@@ -11,9 +12,10 @@ import { ClientIsActive } from '../shared/constants/client-is-active';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private readonly authService: AuthService,
     private router: Router,
-    private readonly toastMessageService: ToastMessageService
+    private readonly toastMessageService: ToastMessageService,
+    private readonly translateService: TranslateService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
@@ -41,8 +43,8 @@ export class AuthGuard implements CanActivate {
           return true;
         } else {
           this.toastMessageService.setMessage(
-            'Authentication',
-            'Sorry, you are not allowed to go there',
+            this.translateService.instant('auth.notificationTitle'),
+            this.translateService.instant('auth.notAllowedToGoThere'),
             toastMessageType.ERROR,
             5
           );
@@ -62,8 +64,8 @@ export class AuthGuard implements CanActivate {
         return true;
       }
       this.toastMessageService.setMessage(
-        'Authorization',
-        'Please complete your profile to continue',
+        this.translateService.instant('auth.notificationTitle'),
+        this.translateService.instant('auth.profileIsNotComplete'),
         toastMessageType.WARN,
         10
       );
@@ -71,8 +73,8 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     this.toastMessageService.setMessage(
-      'Authorization',
-      'Some problem with your account, please contact with support',
+      this.translateService.instant('auth.notificationTitle'),
+      this.translateService.instant('auth.accountError'),
       toastMessageType.ERROR,
       5
     );

@@ -6,5 +6,35 @@
     "update": "Update",
     "cancel": "Cancel",
     "edit": "Edit"
+  },
+  "topbar": {
+    "settings": "Settings",
+    "logout": "Logout",
+    "lang": "Lang"
+  },
+  "auth": {
+    "hello": "Hello!",
+    "subHelloTitle": "You dont know how to start?",
+    "writeToUsP1": "Write",
+    "writeToUsP2": " to us!",
+    "signIn": "Sign in",
+    "password": "password",
+    "recoverPassword": "Recover a password",
+    "createAccMessage": "If you dont have an account, you can click a button placed bottom of this notification",
+    "createAccBtn": "Create account",
+    "notificationTitle": "Authorization",
+    "notCreator": "You are not a creator",
+    "signSuccess": "Sign in success",
+    "signInToContinue": "Please sign in to continue",
+    "notAllowedToGoThere": "Sorry, you are not allowed to go there",
+    "profileIsNotComplete": "Please complete your profile to continue",
+    "accountError": "Some problem with your account, please contact with support",
+    "alreadyLoggedIn": "You are already logged in",
+    "signInViaGoogleError": "Error at login via google, please contact with support",
+    "noAuthorized": "You are not authorized to perform this operation"
+  },
+  "lang": {
+    "notificationTitle": "Application",
+    "changed": "Lang has been changed to {{lang}} successfully, Page reload will be executed at 5 secounds"
   }
 }

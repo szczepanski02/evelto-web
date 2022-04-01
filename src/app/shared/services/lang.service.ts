@@ -14,6 +14,7 @@ export class LangService {
 
   CLIENT_LANG_LC = 'client_lang'
   private api = `${environment.apiUrl}/user/lang`;
+  currentLang: Lang = Lang.EN;
 
   constructor(
     private http: HttpClient,
@@ -24,6 +25,7 @@ export class LangService {
   setLang(lang: Lang): void {
     const user = this.authService.getAuthorizatedUser();
     localStorage.setItem(this.CLIENT_LANG_LC, lang);
+    this.currentLang = lang;
     if(user) {
       this.http.put<ISuccessResponse<string>>(`${this.api}/${user.id}`, { lang }).subscribe();
     }
@@ -33,29 +35,25 @@ export class LangService {
   getLang(): Lang {
     const lang = localStorage.getItem(this.CLIENT_LANG_LC);
     const user = this.authService.getAuthorizatedUser();
-
     if(lang) {
       if(lang === Lang.EN) {
-        if(user && user.lang === lang) {
-          return Lang.EN;
-        }
-        this.setLang(Lang.EN);
+        this.currentLang = Lang.EN;
         return Lang.EN;
+
       }
       if(lang === Lang.PL) {
-        if(user && user.lang === lang) {
-          return Lang.PL;
-        }
-        this.setLang(Lang.PL);
+        this.currentLang = Lang.PL;
         return Lang.PL;
       }
     }
     // if lang is not exist in local storage we will get it from token
     if(!user) {
       this.setLang(Lang.EN);
-      return Lang.EN
+      this.currentLang = Lang.EN;
+      return Lang.EN;
     }
     this.setLang(user.lang);
+    this.currentLang = user.lang;
     return user.lang;
   }
 

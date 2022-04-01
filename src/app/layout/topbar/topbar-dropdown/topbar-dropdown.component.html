@@ -7,15 +7,15 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon color="primary-green-color">settings</mat-icon>
-      <span>settings</span>
+      <span>{{ 'topbar.settings' | translate }}</span>
     </button>
     <button mat-menu-item (click)="handleLogout()">
       <mat-icon color="primary">logout</mat-icon>
-      <span>logout</span>
+      <span>{{ 'topbar.logout' | translate }}</span>
     </button>
     <button mat-menu-item [matMenuTriggerFor]="langMenu">
       <mat-icon color="primary-yellow-color">translate</mat-icon>
-      <span>lang</span>
+      <span>{{ 'topbar.lang' | translate }}</span>
     </button>
   </mat-menu>
 

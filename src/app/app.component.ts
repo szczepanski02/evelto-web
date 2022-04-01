@@ -34,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.langService.getLang();
+    this.langService.setTranslateServiceLang();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.isLoadingSpinnerActive = true;

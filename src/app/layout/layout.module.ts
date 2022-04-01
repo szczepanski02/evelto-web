@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from './../shared/shared.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ import { TopbarDropdownComponent } from './topbar/topbar-dropdown/topbar-dropdow
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   exports: [
     FooterComponent,

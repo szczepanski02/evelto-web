@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +16,7 @@ import { ThirdPartAuthRedirectComponent } from './third-part-auth-redirect/third
   imports: [
     CommonModule,
     SharedModule,
+    TranslateModule,
     AuthRoutingModule
   ]
 })

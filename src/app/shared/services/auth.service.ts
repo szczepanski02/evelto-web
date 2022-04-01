@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastMessageService } from './../reusable-components/toast-message/toast-message.service';
 import { JwtService } from './jwt.service';
 import { Router } from '@angular/router';
@@ -26,7 +27,8 @@ export class AuthService {
     private readonly http: HttpClient,
     private readonly router: Router,
     private readonly jwtService: JwtService,
-    private readonly toastMessageService: ToastMessageService
+    private readonly toastMessageService: ToastMessageService,
+    private readonly translateService: TranslateService
   ) { }
 
   login(payload: ILoginPayload): void {
@@ -37,14 +39,14 @@ export class AuthService {
 
   loginSuccessHandler(data: ITokens) {
     if(data.accountType !== AccountType.CREATOR) {
-      this.toastMessageService.setMessage('Authorization', 'You are not a creator', toastMessageType.ERROR, 5);
+      this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.notCreator'), toastMessageType.ERROR, 5);
       if(this.router.url !== '/auth/login') {
         this.router.navigate(['/auth/login']);
       }
       return;
     }
     this.setSession(data.access_token, data.refresh_token);
-    this.toastMessageService.setMessage('Authorization', 'Sign in success', toastMessageType.INFO, 5);
+    this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.signSuccess'), toastMessageType.INFO, 5);
     this.redirect(true);
   }
 
@@ -87,7 +89,7 @@ export class AuthService {
 
   redirectToLoginPage(): void {
     this.router.navigate(['/auth/login']);
-    this.toastMessageService.setMessage('Authentication', 'Please sign in to continue', toastMessageType.ERROR, 5);
+    this.toastMessageService.setMessage(this.translateService.instant('auth.notificationTitle'), this.translateService.instant('auth.signInToContinue'), toastMessageType.ERROR, 5);
   }
 
   redirect(includeLSItem: boolean): void {

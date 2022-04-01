@@ -6,5 +6,35 @@
     "update": "Zaktualizuj",
     "cancel": "Anuluj",
     "edit": "Edytuj"
+  },
+  "topbar": {
+    "settings": "Ustawienia",
+    "logout": "Wyloguj",
+    "lang": "Język"
+  },
+  "auth": {
+    "hello": "Cześć!",
+    "subHelloTitle": "Nie wiesz jak zacząć?",
+    "writeToUsP1": "Napisz",
+    "writeToUsP2": " do nas!",
+    "signIn": "Zaloguj się",
+    "password": "hasło",
+    "recoverPassword": "Odzyskaj hasło",
+    "createAccMessage": "Jeśli nie masz konta, kliknij w przycisk umieszczony poniżej, aby je założyć",
+    "createAccBtn": "Utwórz konto",
+    "notificationTitle": "Autoryzacja",
+    "notCreator": "Nie jesteś twórcą",
+    "signSuccess": "Zalogowano pomyślnie",
+    "signInToContinue": "Zaloguj się aby kontynuować",
+    "notAllowedToGoThere": "Przepraszamy, nie masz uprawnień aby tam przejść",
+    "profileIsNotComplete": "Uzupełnij swój profil aby kontynuować",
+    "accountError": "Wystąpił problem z twoim kontem, proszę skontaktuj się z administracją",
+    "alreadyLoggedIn": "Jesteś już zalogowany",
+    "signInViaGoogleError": "Wystąpił błąd podczas logowania przez google, proszę skontaktuj się z nami",
+    "noAuthorized": "Nie masz odpowiednich uprawnień do wykonania tej operacji"
+  },
+  "lang": {
+    "notificationTitle": "Aplikacja",
+    "changed": "Język został zmieniony na {{lang}} pomyślnie, strona zostanie przeładowana w ciągu 5 sekund"
   }
 }
