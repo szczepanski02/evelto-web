@@ -1,8 +1,10 @@
 <div class="sidenav">
   <div class="sidenav__nav slide-in-left">
+
     <div class="sidenav__logo-container">
       <img src="../../../assets/images/logo.png" width="52px" height="52px" alt="">
     </div>
+
     <div class="sidenav__items">
       <div class="sidenav__item" id="search">
         <div class="sidenav__item-content">
@@ -35,6 +37,39 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="sidenav__nav-mobile">
+    <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+      <mat-icon>widgets</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/search.svg" width="26px" height="26px" alt="">
+        <span>Search</span>
+      </button>
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/home.svg" width="26px" height="26px" alt="">
+        <span>Home</span>
+      </button>
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/chart.svg" width="26px" height="26px" alt="">
+        <span>Charts</span>
+      </button>
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/user.svg" width="26px" height="26px" alt="">
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/shopping.svg" width="26px" height="26px" alt="">
+        <span>Card</span>
+      </button>
+      <button mat-menu-item class="sidenav__nav-mobile-item">
+        <img src="../../../assets/images/icons/cash.svg" width="26px" height="26px" alt="">
+        <span>Payments</span>
+      </button>
+    </mat-menu>
   </div>
 
   <div class="sidenav__router">
