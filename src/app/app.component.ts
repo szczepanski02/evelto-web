@@ -5,16 +5,21 @@ import { Subscription } from 'rxjs';
 import { AuthService } from './shared/services/auth.service';
 import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { WindowSizeService } from './shared/services/window-size.service';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  
   isAuthorizated = false;
   isLoadingSpinnerActive = false;
 
@@ -28,28 +33,38 @@ export class AppComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private langService: LangService
   ) {
-    this.translateService.addLangs([Lang.EN, Lang.PL])
+    this.translateService.addLangs([Lang.EN, Lang.PL]);
     this.translateService.setDefaultLang(Lang.EN);
   }
-  
+
   ngOnInit(): void {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `calc(${vh}px)`);
     this.langService.getLang();
     this.langService.setTranslateServiceLang();
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.isLoadingSpinnerActive = true;
-
-      } else if ( event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          this.isLoadingSpinnerActive = true;
+        } else if (
+          event instanceof NavigationEnd ||
+          event instanceof NavigationCancel ||
+          event instanceof NavigationError
+        ) {
+          this.isLoadingSpinnerActive = false;
+          this.sidenavService.setActiveItem(this.router.url);
+        }
+      },
+      () => {
         this.isLoadingSpinnerActive = false;
-        this.sidenavService.setActiveItem(this.router.url);
       }
-      }, () => {
-        this.isLoadingSpinnerActive = false;
-    });
+    );
 
-    this.isAuthorizatedSubscription = this.authService.getIsAuthorizated().subscribe(state => {
-      this.isAuthorizated = state;
-    });
+    this.isAuthorizatedSubscription = this.authService
+      .getIsAuthorizated()
+      .subscribe((state) => {
+        this.isAuthorizated = state;
+      });
   }
 
   ngOnDestroy(): void {
@@ -58,6 +73,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onWindowResized(event: any) {
-    this.windowSizeService.resized({ width: event.target.innerWidth, height: event.target.innerHeight });
+    this.windowSizeService.resized({
+      width: event.target.innerWidth,
+      height: event.target.innerHeight,
+    });
   }
 }
