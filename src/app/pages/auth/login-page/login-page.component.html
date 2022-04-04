@@ -1,52 +1,50 @@
-<div class="container slide-in-right">
-  <div class="login-page">
-    <div class="login-page__left-side">
-      <div class="login-page__hello-container">
-        <h1 class="login-page__hello">{{ 'auth.hello' | translate }}</h1>
-      </div>
-      <p class="login-page__p-xl">{{ 'auth.subHelloTitle' | translate }}</p>
-      <h1 class="login-page__h1"><span class="login-page__span-primary">{{ 'auth.writeToUsP1' | translate }}</span> {{ 'auth.writeToUsP2' | translate }}</h1>
+<div class="login-page slide-in-right">
+  <div class="login-page__left-side">
+    <div class="login-page__hello-container">
+      <h1 class="login-page__hello">{{ 'auth.hello' | translate }}</h1>
     </div>
+    <p class="login-page__p-xl">{{ 'auth.subHelloTitle' | translate }}</p>
+    <h1 class="login-page__h1"><span class="login-page__span-primary">{{ 'auth.writeToUsP1' | translate }}</span> {{ 'auth.writeToUsP2' | translate }}</h1>
+  </div>
 
-    <mat-card class="login-page__right-side">
-      <mat-card-title>{{ 'auth.signIn' | translate }}</mat-card-title>
-      <div class="divider-accent"></div>
+  <mat-card class="login-page__right-side">
+    <mat-card-title>{{ 'auth.signIn' | translate }}</mat-card-title>
+    <div class="divider-accent"></div>
 
-      <mat-card-content (keyup)="handleKeyUp($event)">
-        <div class="login-page__form-container">
-          <div class="login-page__form">
-            <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
-              <mat-label>email</mat-label>
-              <input matInput placeholder="Email" [(ngModel)]="emailValue" (ngModelChange)="inputValueChanged()">
-            </mat-form-field>
+    <mat-card-content (keyup)="handleKeyUp($event)">
+      <div class="login-page__form-container">
+        <div class="login-page__form">
+          <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
+            <mat-label>email</mat-label>
+            <input matInput placeholder="Email" [(ngModel)]="emailValue" (ngModelChange)="inputValueChanged()">
+          </mat-form-field>
 
-            <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
-              <mat-label>{{ 'auth.password' | translate }}</mat-label>
-              <input matInput type="password" placeholder="{{ 'auth.subHelloTitle' | translate }}" [(ngModel)]="passwordValue" (ngModelChange)="inputValueChanged()">
-            </mat-form-field>
-            <div class="login-page__form-actions">
-              <a href="">{{ 'auth.recoverPassword' | translate }}</a>
-              <button mat-raised-button color="primary-green-btn" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">{{ 'auth.signIn' | translate }}</button>
-            </div>
-            <div class="login-page__social-media">
-              <button mat-raised-button color="primary-yellow-btn" class="login-page__button-icon" (click)="googleStrategyLoginSubmit()">
-                <img src="../../../../assets/images/icons/google.svg" width="24px" height="24px" alt="">
-                <span class="login-page__button-icon-span">google</span>
-              </button>
+          <mat-form-field appearance="outline" color="accent" class="login-page__form-item">
+            <mat-label>{{ 'auth.password' | translate }}</mat-label>
+            <input matInput type="password" placeholder="{{ 'auth.subHelloTitle' | translate }}" [(ngModel)]="passwordValue" (ngModelChange)="inputValueChanged()">
+          </mat-form-field>
+          <div class="login-page__form-actions">
+            <a href="">{{ 'auth.recoverPassword' | translate }}</a>
+            <button mat-raised-button color="primary-green-btn" [disabled]="!isSubmitButtonActive" (click)="localStrategyLoginSubmit()">{{ 'auth.signIn' | translate }}</button>
+          </div>
+          <div class="login-page__social-media">
+            <button mat-raised-button color="primary-yellow-btn" class="login-page__button-icon" (click)="googleStrategyLoginSubmit()">
+              <img src="../../../../assets/images/icons/google.svg" width="24px" height="24px" alt="">
+              <span class="login-page__button-icon-span">google</span>
+            </button>
 
-              <button mat-button class="login-page__button-icon" disabled="true">
-                <img src="../../../../assets/images/icons/facebook.svg" width="24px" height="24px" alt="">
-                <span class="login-page__button-icon-span">facebook</span>
-              </button>
-            </div>
+            <button mat-button class="login-page__button-icon" disabled="true">
+              <img src="../../../../assets/images/icons/facebook.svg" width="24px" height="24px" alt="">
+              <span class="login-page__button-icon-span">facebook</span>
+            </button>
+          </div>
 
-            <div class="login-page__create-account">
-              <p>{{ 'auth.createAccMessage' | translate }}</p>
-              <button mat-raised-button color="accent" [routerLink]="['/auth/create-account']">{{ 'auth.createAccBtn' | translate }}</button>
-            </div>
+          <div class="login-page__create-account">
+            <p>{{ 'auth.createAccMessage' | translate }}</p>
+            <button mat-raised-button color="accent" [routerLink]="['/auth/create-account']">{{ 'auth.createAccBtn' | translate }}</button>
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

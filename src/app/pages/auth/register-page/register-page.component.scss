@@ -10,10 +10,18 @@
 }
 
 .register {
-  width: 720px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 30px);
+  margin: 0 auto;
 
-  @media(max-width: 780px) {
-    width: 100%;
+  &__container {
+    width: 720px;
+
+    @media(max-width: 780px) {
+      width: 100%;
+    }
   }
 
   &__validator {

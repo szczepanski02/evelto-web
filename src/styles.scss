@@ -13,12 +13,18 @@
   overflow-x: hidden !important;
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   background-color: var(--dark-bg);
   color: var(--font-light);
   margin: 0;
   padding: 0;
   overflow-x: hidden !important;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   box-sizing: border-box;
 }
 
@@ -26,7 +32,6 @@ body {
   max-width: 1250px;
   margin: 0 auto;
   padding: 15px;
-  margin-top: 20px;
 }
 
 .divider {

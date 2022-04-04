@@ -1,9 +1,8 @@
 .login-page {
-  width: 100%;
-  min-height: calc(100vh - 70px);
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  min-height: calc(100vh - 30px);
+  align-items: center;
 
   @media(max-width: 980px) {
     justify-content: center;
