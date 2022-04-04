@@ -1,6 +1,6 @@
 <div class="register slide-in-right">
   <mat-card class="register__container">
-    <h2>Create new account</h2>
+    <h2>{{ 'register.title' | translate }}</h2>
     <div class="divider-accent"></div>
     <mat-card-content>
 
@@ -9,54 +9,78 @@
         <!-- STEP FIRST -> MAIN ACCOUNT DATA -->
         <mat-step [stepControl]="primaryAccountFormData" color="accent">
           <ng-template matStepLabel>
-            <div [showIfWidthBetween]="[780,10000]"> Main </div>
+            <div [showIfWidthBetween]="[780,10000]"> {{ 'register.stepTitle.main' | translate }} </div>
           </ng-template>
           <form [formGroup]="primaryAccountFormData">
             <div class="register__form">
               <div class="register__form-row">
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Username</mat-label>
-                  <input matInput placeholder="Username" formControlName="username" class="form-control" required />
+                  <mat-label>{{ 'register.label.username' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.username' | translate }}" formControlName="username" class="form-control" required />
                   <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="register__validator">
-                    <div *ngIf="fPrimary['username'].errors['required']">Username is required</div>
-                    <div *ngIf="fPrimary['username'].errors['minlength']">Username min length is {{ fPrimary['username'].errors['minlength'].requiredLength }}</div>
-                    <div *ngIf="fPrimary['username'].errors['maxlength']">Username max length is {{ fPrimary['username'].errors['maxlength'].requiredLength }}</div>
+                    <div *ngIf="fPrimary['username'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPrimary['username'].errors['minlength']">
+                      {{ 'register.validation.minLength' | translate: { min: fPrimary['username'].errors['minlength'].requiredLength } }}
+                    </div>
+                    <div *ngIf="fPrimary['username'].errors['maxlength']">
+                      {{ 'register.validation.maxLength' | translate: { max: fPrimary['username'].errors['maxlength'].requiredLength } }}
+                    </div>
                   </div>
                 </mat-form-field>
                 <mat-form-field appearance="outline" color="accent">
                   <mat-label>Email</mat-label>
                   <input matInput placeholder="Email" formControlName="email" class="form-control" required>
                   <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="register__validator">
-                    <div *ngIf="fPrimary['email'].errors['required']">Email is required</div>
-                    <div *ngIf="fPrimary['email'].errors['minlength']">Email min length is {{ fPrimary['email'].errors['minlength'].requiredLength }}</div>
-                    <div *ngIf="fPrimary['email'].errors['maxlength']">Email max length is {{ fPrimary['email'].errors['maxlength'].requiredLength }}</div>
+                    <div *ngIf="fPrimary['email'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPrimary['email'].errors['minlength']">
+                      {{ 'register.validation.minLength' | translate: { min: fPrimary['email'].errors['minlength'].requiredLength } }}
+                    </div>
+                    <div *ngIf="fPrimary['email'].errors['maxlength']">
+                      {{ 'register.validation.maxLength' | translate: { max: fPrimary['email'].errors['maxlength'].requiredLength } }}
+                    </div>
                   </div>
                 </mat-form-field>
               </div>
               <div class="register__form-row">
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>First name</mat-label>
-                  <input matInput placeholder="First name" formControlName="firstName" class="form-control" required>
+                  <mat-label>{{ 'register.label.firstName' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.firstName' | translate }}" formControlName="firstName" class="form-control" required>
                   <div *ngIf="fPrimary['firstName'].touched && fPrimary['firstName'].errors" class="register__validator">
-                    <div *ngIf="fPrimary['firstName'].errors['required']">First name is required</div>
-                    <div *ngIf="fPrimary['firstName'].errors['minlength']">First name min length is {{ fPrimary['firstName'].errors['minlength'].requiredLength }}</div>
-                    <div *ngIf="fPrimary['firstName'].errors['maxlength']">First name max length is {{ fPrimary['firstName'].errors['maxlength'].requiredLength }}</div>
+                    <div *ngIf="fPrimary['firstName'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPrimary['firstName'].errors['minlength']">
+                      {{ 'register.validation.minLength' | translate: { min: fPrimary['firstName'].errors['minlength'].requiredLength } }}
+                    </div>
+                    <div *ngIf="fPrimary['firstName'].errors['maxlength']">
+                      {{ 'register.validation.maxLength' | translate: { max: fPrimary['firstName'].errors['maxlength'].requiredLength } }}
+                    </div>
                   </div>
                 </mat-form-field>
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Last name</mat-label>
-                  <input matInput placeholder="Last name" formControlName="lastName" class="form-control" required>
+                  <mat-label>{{ 'register.label.lastName' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.lastName' | translate }}" formControlName="lastName" class="form-control" required>
                   <div *ngIf="fPrimary['lastName'].touched && fPrimary['lastName'].errors" class="register__validator">
-                    <div *ngIf="fPrimary['lastName'].errors['required']">Last name is required</div>
-                    <div *ngIf="fPrimary['lastName'].errors['minlength']">Last name min length is {{ fPrimary['lastName'].errors['minlength'].requiredLength }}</div>
-                    <div *ngIf="fPrimary['lastName'].errors['maxlength']">Last name max length is {{ fPrimary['lastName'].errors['maxlength'].requiredLength }}</div>
+                    <div *ngIf="fPrimary['lastName'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPrimary['lastName'].errors['minlength']">
+                      {{ 'register.validation.minLength' | translate: { min: fPrimary['lastName'].errors['minlength'].requiredLength } }}
+                    </div>
+                    <div *ngIf="fPrimary['lastName'].errors['maxlength']">
+                      {{ 'register.validation.maxLength' | translate: { max: fPrimary['lastName'].errors['maxlength'].requiredLength } }}
+                    </div>
                   </div>
                 </mat-form-field>
               </div>
             </div>
             <div class="stpper-action-btns">
-              <button mat-raised-button matStepperPrevious disabled>Back</button>
-              <button mat-raised-button color="primary-green-btn" matStepperNext>Next</button>
+              <button mat-raised-button matStepperPrevious disabled>{{ 'buttons.back' | translate }}</button>
+              <button mat-raised-button color="primary-green-btn" matStepperNext>{{ 'buttons.next' | translate }}</button>
             </div>
           </form>
         </mat-step>
@@ -64,34 +88,45 @@
         <!-- SEC FIRST -> SECURITY -->
         <mat-step [stepControl]="passwordsAccountFormData" color="accent">
           <ng-template matStepLabel>
-            <div [showIfWidthBetween]="[780,10000]"> Security </div>
+            <div [showIfWidthBetween]="[780,10000]"> {{ 'register.stepTitle.security' | translate }} </div>
           </ng-template>
           <form [formGroup]="passwordsAccountFormData">
             <div class="register__form">
               <div class="register__form-row">
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Password</mat-label>
-                  <input matInput type="password" placeholder="Password" formControlName="password" class="form-control" required />
+                  <mat-label>{{ 'register.label.password' | translate }}</mat-label>
+                  <input matInput type="password" placeholder="{{ 'register.label.password' | translate }}" formControlName="password" class="form-control" required />
                   <div *ngIf="fPass['password'].touched && fPass['password'].errors" class="register__validator">
-                    <div *ngIf="fPass['password'].errors['required']">Password is required</div>
-                    <div *ngIf="fPass['password'].errors['minlength']">Password min length is {{ fPass['password'].errors['minlength'].requiredLength }}</div>
-                    <div *ngIf="fPass['password'].errors['maxlength']">Password max length is {{ fPass['password'].errors['maxlength'].requiredLength }}</div>
+                    <div *ngIf="fPass['password'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPass['password'].errors['minlength']">
+                      {{ 'register.validation.minLength' | translate: { min: fPass['password'].errors['minlength'].requiredLength } }}
+                    </div>
+                    <div *ngIf="fPass['password'].errors['maxlength']">
+                      Password max length is {{ fPass['password'].errors['maxlength'].requiredLength }}
+                      {{ 'register.validation.maxLength' | translate: { max: fPass['password'].errors['maxlength'].requiredLength } }}
+                    </div>
                   </div>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Confirm password</mat-label>
-                  <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword" class="form-control" required />
+                  <mat-label>{{ 'register.label.confirmPassword' | translate }}</mat-label>
+                  <input matInput type="password" placeholder="{{ 'register.label.confirmPassword' | translate }}" formControlName="confirmPassword" class="form-control" required />
                   <div *ngIf="fPass['confirmPassword'].touched && fPass['confirmPassword'].errors" class="register__validator">
-                    <div *ngIf="fPass['confirmPassword'].errors['required']">Confirm password is required</div>
-                    <div *ngIf="fPass['confirmPassword'].errors['confirmedValidator']">Confirm password and password must match</div>
+                    <div *ngIf="fPass['confirmPassword'].errors['required']">
+                      {{ 'register.validation.required' | translate }}
+                    </div>
+                    <div *ngIf="fPass['confirmPassword'].errors['confirmedValidator']">
+                      {{ 'register.validation.passwordsMatch' | translate }}
+                    </div>
                   </div>
                 </mat-form-field>
               </div>
             </div>
             <div class="stpper-action-btns">
-              <button mat-raised-button matStepperPrevious>Back</button>
-              <button mat-raised-button color="accent" matStepperNext>Next</button>
+              <button mat-raised-button matStepperPrevious>{{ 'buttons.back' | translate }}</button>
+              <button mat-raised-button color="primary-green-btn" matStepperNext>{{ 'buttons.next' | translate }}</button>
             </div>
           </form>
         </mat-step>
@@ -99,13 +134,13 @@
         <!-- TH FIRST -> DETAILS -->
         <mat-step [stepControl]="detailsAccountFormData" color="accent">
           <ng-template matStepLabel>
-            <div [showIfWidthBetween]="[780,10000]"> Details </div>
+            <div [showIfWidthBetween]="[780,10000]"> {{ 'register.stepTitle.details' | translate }} </div>
           </ng-template>
           <form [formGroup]="detailsAccountFormData">
             <div class="register__form">
               <div class="register__form-row">
                 <mat-form-field class="example-full-width" appearance="outline" color="accent">
-                  <mat-label>Date of birth</mat-label>
+                  <mat-label>{{ 'register.label.dateOfBirth' | translate }}</mat-label>
                   <input matInput [min]="minBirthDate" [max]="maxBirthDate" [matDatepicker]="picker" formControlName="birthDate" />
                   <mat-datepicker-toggle matSuffix [for]="picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -114,11 +149,11 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Gender</mat-label>
+                  <mat-label>{{ 'register.label.gender' | translate }}</mat-label>
                   <mat-select matNativeControl formControlName="gender" required>
-                    <mat-option value="MALE">Male</mat-option>
-                    <mat-option value="FEMALE">Female</mat-option>
-                    <mat-option value="OTHER">Other</mat-option>
+                    <mat-option value="MALE">{{ 'register.label.male' | translate }}</mat-option>
+                    <mat-option value="FEMALE">{{ 'register.label.female' | translate }}</mat-option>
+                    <mat-option value="OTHER">{{ 'register.label.other' | translate }}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -126,8 +161,8 @@
               </div>
             </div>
             <div class="stpper-action-btns">
-              <button mat-raised-button matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary-green-btn" matStepperNext>Next</button>
+              <button mat-raised-button matStepperPrevious>{{ 'buttons.back' | translate }}</button>
+              <button mat-raised-button color="primary-green-btn" matStepperNext>{{ 'buttons.next' | translate }}</button>
             </div>
           </form>
         </mat-step>
@@ -135,13 +170,13 @@
         <!-- FO STEP -> ADDRESS -->
         <mat-step [stepControl]="addressAccountFormData" color="accent">
           <ng-template matStepLabel>
-            <div [showIfWidthBetween]="[780,10000]"> Address </div>
+            <div [showIfWidthBetween]="[780,10000]"> {{ 'register.stepTitle.address' | translate }} </div>
           </ng-template>
           <form [formGroup]="addressAccountFormData">
             <div class="register__form">
               <div class="register__form-row">
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>Country</mat-label>
+                  <mat-label>{{ 'register.label.country' | translate }}</mat-label>
                   <mat-select matNativeControl formControlName="country">
                     <mat-option *ngFor="let country of countries" [value]="country.key" class="register__form-country">
                       <img [src]="'../../../../assets/images/countries/' + country.icon" width="20px" alt="" class="register__form-country-icon">
@@ -151,25 +186,25 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="accent">
-                  <mat-label>City</mat-label>
-                  <input matInput placeholder="City" formControlName="city" class="form-control" />
+                  <mat-label>{{ 'register.label.city' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.city' | translate }}" formControlName="city" class="form-control" />
                 </mat-form-field>
               </div>
               <div class="register__form-row">
                 <mat-form-field appearance="outline" color="accent" class="register__form-small-input">
-                  <mat-label>Zip code</mat-label>
-                  <input matInput placeholder="Zip code" formControlName="zipCode" class="form-control" />
+                  <mat-label>{{ 'register.label.zipCode' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.zipCode' | translate }}" formControlName="zipCode" class="form-control" />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="accent" class="register__form-small-input">
-                  <mat-label>Number, st.</mat-label>
-                  <input matInput placeholder="Number, st." formControlName="address1" class="form-control" />
+                  <mat-label>{{ 'register.label.numberSt' | translate }}</mat-label>
+                  <input matInput placeholder="{{ 'register.label.numberSt' | translate }}" formControlName="address1" class="form-control" />
                 </mat-form-field>
               </div>
             </div>
             <div class="stpper-action-btns">
-              <button mat-raised-button matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary-green-btn" matStepperNext>Next</button>
+              <button mat-raised-button matStepperPrevious>{{ 'buttons.back' | translate }}</button>
+              <button mat-raised-button color="primary-green-btn" matStepperNext>{{ 'buttons.next' | translate }}</button>
             </div>
           </form>
         </mat-step>
@@ -177,15 +212,15 @@
         <!-- LAST STEP -> SUBMIT NOTIFICATIONS -->
         <mat-step color="accent">
           <ng-template matStepLabel>
-            <div [showIfWidthBetween]="[780,10000]"> Done </div>
+            <div [showIfWidthBetween]="[780,10000]"> {{ 'register.stepTitle.done' | translate }} </div>
           </ng-template>
           <div class="register__form">
-            <h2>Form is complete: </h2>
+            <h2>{{ 'register.formComplete' | translate }}</h2>
             <div class="register__complete-box">
               <div class="register__complete-item">
                 <span class="register__complete-nr">1</span>
                 <div class="register__complete-content">
-                  <h3 class="register__complete-name">Main</h3>
+                  <h3 class="register__complete-name">{{ 'register.stepTitle.main' | translate }}</h3>
                   <mat-icon class="register__complete-icon" *ngIf="this.primaryAccountFormData.valid">check_circle</mat-icon>
                   <mat-icon class="register__complete-icon-wrong" *ngIf="!this.primaryAccountFormData.valid">cancel</mat-icon>
                 </div>
@@ -193,7 +228,7 @@
               <div class="register__complete-item">
                 <span class="register__complete-nr">2</span>
                 <div class="register__complete-content">
-                  <h3 class="register__complete-name">Security</h3>
+                  <h3 class="register__complete-name">{{ 'register.stepTitle.security' | translate }}</h3>
                   <mat-icon class="register__complete-icon" *ngIf="this.passwordsAccountFormData.valid">check_circle</mat-icon>
                   <mat-icon class="register__complete-icon-wrong" *ngIf="!this.passwordsAccountFormData.valid">cancel</mat-icon>
                 </div>
@@ -201,7 +236,7 @@
               <div class="register__complete-item">
                 <span class="register__complete-nr">3</span>
                 <div class="register__complete-content">
-                  <h3 class="register__complete-name">Details</h3>
+                  <h3 class="register__complete-name">{{ 'register.stepTitle.details' | translate }}</h3>
                   <mat-icon class="register__complete-icon" *ngIf="this.detailsAccountFormData.valid">check_circle</mat-icon>
                   <mat-icon class="register__complete-icon-wrong" *ngIf="!this.detailsAccountFormData.valid">cancel</mat-icon>
                 </div>
@@ -209,26 +244,26 @@
               <div class="register__complete-item">
                 <span class="register__complete-nr">4</span>
                 <div class="register__complete-content">
-                  <h3 class="register__complete-name">Address</h3>
+                  <h3 class="register__complete-name">{{ 'register.stepTitle.address' | translate }}</h3>
                   <mat-icon class="register__complete-icon" *ngIf="this.addressAccountFormData.valid">check_circle</mat-icon>
                   <mat-icon class="register__complete-icon-wrong" *ngIf="!this.addressAccountFormData.valid">cancel</mat-icon>
                 </div>
               </div>
             </div>
             <div class="divider-primary-green"></div>
-            <h3 *ngIf="this.primaryAccountFormData.valid && this.passwordsAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid">Your account has been completed, thanks for your time. We hope, you have completed truthful data.</h3>
+            <h3 *ngIf="this.primaryAccountFormData.valid && this.passwordsAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid">{{ 'register.completed' | translate }}</h3>
           </div>
           <div class="register__last-step-btns">
             <div>
-              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperPrevious>{{ 'buttons.back' | translate }}</button>
             </div>
-            <button mat-raised-button color="primary-green-btn" (click)="submit()" [disabled]="!(this.primaryAccountFormData.valid && this.passwordsAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)">Create
+            <button mat-raised-button color="primary-green-btn" (click)="submit()" [disabled]="!(this.primaryAccountFormData.valid && this.passwordsAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)">{{ 'buttons.create' | translate }}
             </button>
           </div>
         </mat-step>
 
       </mat-stepper>
-      <p class="register__required-notification">* required inputs are advisable by asterisk</p>
+      <p class="register__required-notification">{{ 'register.required' | translate }}</p>
     </mat-card-content>
   </mat-card>
 </div>

@@ -5,7 +5,9 @@
     "delete": "Delete",
     "update": "Update",
     "cancel": "Cancel",
-    "edit": "Edit"
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next"
   },
   "topbar": {
     "settings": "Settings",
@@ -36,5 +38,40 @@
   "lang": {
     "notificationTitle": "Application",
     "changed": "Lang has been changed to {{lang}} successfully, Page reload will be executed at 5 secounds"
+  },
+  "register": {
+    "title": "Create new account",
+    "label": {
+      "username": "Username",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "dateOfBirth": "Date of birth",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "country": "Country",
+      "city": "City",
+      "zipCode": "Zip code",
+      "numberSt": "Number, st."
+    },
+    "stepTitle": {
+      "main": "Main",
+      "security": "Security",
+      "details": "Details",
+      "address": "Address",
+      "done": "Done"
+    },
+    "validation": {
+      "required": "This property is required",
+      "minLength": "This value must be at least {{min}} characters long",
+      "maxLength": "This value must be at most {{max}} characters long",
+      "passwordsMatch": "Confirm password and password must match"
+    },
+    "required": "* required inputs are advisable by asterisk",
+    "completed": "Your account has been completed, thanks for your time. We hope, you have completed truthful data.",
+    "formComplete": "Form is complete:"
   }
 }

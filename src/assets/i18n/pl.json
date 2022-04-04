@@ -5,7 +5,9 @@
     "delete": "Usuń",
     "update": "Zaktualizuj",
     "cancel": "Anuluj",
-    "edit": "Edytuj"
+    "edit": "Edytuj",
+    "back": "Powrót",
+    "next": "Dalej"
   },
   "topbar": {
     "settings": "Ustawienia",
@@ -36,5 +38,40 @@
   "lang": {
     "notificationTitle": "Aplikacja",
     "changed": "Język został zmieniony na {{lang}} pomyślnie, strona zostanie przeładowana w ciągu 5 sekund"
+  },
+  "register": {
+    "title": "Formularz rejestracji",
+    "label": {
+      "username": "Nazwa użytkownika",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "password": "Hasło",
+      "confirmPassword": "Potwierdź hasło",
+      "dateOfBirth": "Data urodzin",
+      "gender": "Płeć",
+      "male": "Mężczyzna",
+      "female": "Kobieta",
+      "other": "Inna",
+      "country": "Kraj",
+      "city": "Miasto",
+      "zipCode": "Kod pocztowy",
+      "numberSt": "Numer, ul."
+    },
+    "stepTitle": {
+      "main": "Podstawowe",
+      "security": "Bezpieczeństwo",
+      "details": "Detale",
+      "address": "Address",
+      "done": "Podsumowanie"
+    },
+    "validation": {
+      "required": "To pole jest wymagane",
+      "minLength": "Minimalna długość tego pola to {{min}} znaków",
+      "maxLength": "Maksymalna długość tego pola to {{max}} znaków",
+      "passwordsMatch": "Hasła muszą być takie same"
+    },
+    "required": "* wszystkie pola oznaczone gwiazką są wymagane",
+    "completed": "Twoje konto zostało skompletowane, dziękujemy za poświęcenie swojego czasu. Ufamy, że dane zostały wypełnione zgodnie z prawdą.",
+    "formComplete": "Formularz został uzupełniony:"
   }
 }

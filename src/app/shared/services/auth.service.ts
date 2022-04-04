@@ -54,6 +54,7 @@ export class AuthService {
           toastMessageType.INFO,
           5
         );
+        this.router.navigate(['/auth/login']);
       });
   }
 
