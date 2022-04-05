@@ -38,8 +38,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `calc(${vh}px)`);
     this.langService.getLang();
     this.langService.setTranslateServiceLang();
     this.router.events.subscribe(
@@ -73,6 +71,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onWindowResized(event: any) {
+    document.documentElement.style.setProperty(
+      '--vh',
+      `calc(${window.innerHeight * 0.01}px)`
+    );
     this.windowSizeService.resized({
       width: event.target.innerWidth,
       height: event.target.innerHeight,

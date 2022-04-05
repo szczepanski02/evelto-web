@@ -104,7 +104,6 @@
                       {{ 'register.validation.minLength' | translate: { min: fPass['password'].errors['minlength'].requiredLength } }}
                     </div>
                     <div *ngIf="fPass['password'].errors['maxlength']">
-                      Password max length is {{ fPass['password'].errors['maxlength'].requiredLength }}
                       {{ 'register.validation.maxLength' | translate: { max: fPass['password'].errors['maxlength'].requiredLength } }}
                     </div>
                   </div>

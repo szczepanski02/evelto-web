@@ -1,0 +1,37 @@
+<div class="dropdown">
+  <button mat-stroked-button aria-label="Profile settings button" class="dropdown__btn" [matMenuTriggerFor]="menu">
+    <span class="dropdown__btn-span">user</span>
+    <img src="../../../assets/images/default_profile.png" width="36px" height="36px" alt="">
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['auth/login']">
+      <mat-icon color="accent">login</mat-icon>
+      <span>{{ 'topbar.login' | translate }}</span>
+    </button>
+    <button mat-menu-item [routerLink]="['auth/create-account']">
+      <mat-icon color="primary">person_add</mat-icon>
+      <span>{{ 'topbar.register' | translate }}</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon color="primary-green-color">settings</mat-icon>
+      <span>{{ 'topbar.settings' | translate }}</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="langMenu">
+      <mat-icon color="primary-yellow-color">translate</mat-icon>
+      <span>{{ 'topbar.lang' | translate }}</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #langMenu="matMenu">
+    <button mat-menu-item class="dropdown__lang-btn" [ngClass]="{ 'active': settedLang === 'pl' }" (click)="switchLang(langEnum.PL)">
+      <img src="../../../../assets/images/translations/pl.png" width="32px" height="32px" alt="">
+      <span>PL</span>
+    </button>
+    <button mat-menu-item class="dropdown__lang-btn" [ngClass]="{ 'active': settedLang === 'en' }" (click)="switchLang(langEnum.EN)">
+      <img src="../../../../assets/images/translations/en.png" width="32px" height="32px" alt="">
+      <span>EN</span>
+    </button>
+  </mat-menu>
+
+</div>

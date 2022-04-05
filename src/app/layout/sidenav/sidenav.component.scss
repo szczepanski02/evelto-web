@@ -43,15 +43,6 @@
     }
   }
 
-  &__logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateX(-4px);
-    margin-top: 6px;
-    margin-bottom: 6px;
-  }
-
   &__items {
     padding: 10px 0;
     display: flex;
@@ -78,7 +69,7 @@
 
   &__router {
     width: 100%;
-    margin-top: 60px;
+    margin-top: 80px;
   }
 
 }

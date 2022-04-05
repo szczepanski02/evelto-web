@@ -7,7 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
 import { TopbarDropdownComponent } from './topbar/topbar-dropdown/topbar-dropdown.component';
-
+import { TopbarNonAuthComponent } from './topbar-non-auth/topbar-non-auth.component';
+import { TopbarNonAuthDropdownComponent } from './topbar-non-auth/topbar-non-auth-dropdown/topbar-non-auth-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -15,17 +16,15 @@ import { TopbarDropdownComponent } from './topbar/topbar-dropdown/topbar-dropdow
     SidenavComponent,
     TopbarComponent,
     TopbarDropdownComponent,
+    TopbarNonAuthComponent,
+    TopbarNonAuthDropdownComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule,
-    TranslateModule
-  ],
+  imports: [CommonModule, SharedModule, RouterModule, TranslateModule],
   exports: [
     FooterComponent,
     SidenavComponent,
-    TopbarComponent
-  ]
+    TopbarComponent,
+    TopbarNonAuthComponent,
+  ],
 })
-export class LayoutModule { }
+export class LayoutModule {}

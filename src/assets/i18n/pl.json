@@ -11,6 +11,8 @@
   },
   "topbar": {
     "settings": "Ustawienia",
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
     "logout": "Wyloguj",
     "lang": "Język"
   },

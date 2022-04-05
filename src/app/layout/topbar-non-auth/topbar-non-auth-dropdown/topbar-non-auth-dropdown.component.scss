@@ -1,0 +1,22 @@
+.dropdown {
+  &__btn-span {
+    margin-right: 15px;
+  }
+
+  &__lang-btn {
+    display: flex;
+    align-items: center;
+
+    & span {
+      margin-left: 10px;
+    }
+  }
+}
+
+.active {
+  background-color: var(--lighten-bg);
+
+  &:hover {
+    background-color: var(--lighten-bg);
+  }
+}

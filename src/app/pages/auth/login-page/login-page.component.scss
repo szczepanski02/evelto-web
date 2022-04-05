@@ -1,8 +1,8 @@
+@import '../../../../assets/scss/mixins.scss';
+
 .login-page {
-  display: flex;
+  @include y-center;
   justify-content: space-between;
-  align-items: center;
-  min-height: calc(var(--vh, 1vh) * 100 - 30px);
   width: 100%;
 
   @media(max-width: 980px) {
