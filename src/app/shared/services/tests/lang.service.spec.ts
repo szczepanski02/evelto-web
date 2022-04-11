@@ -74,10 +74,7 @@ describe('LangService', () => {
     service.setLang(Lang.EN);
     expect(window.localStorage.getItem(service.CLIENT_LANG_LC)).toBe(Lang.EN);
 
-    const req = httpMock.expectOne(
-      `${service.api}/${_userDBMock[1].id}`,
-      Lang.EN
-    );
+    const req = httpMock.expectOne(`${service.api}`, Lang.EN);
     expect(req.request.method).toBe('PUT');
     req.flush(null);
   });

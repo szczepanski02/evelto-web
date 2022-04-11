@@ -1,7 +1,12 @@
 import { LangService } from './../../../shared/services/lang.service';
 import { AuthService } from './../../../shared/services/auth.service';
 import { AccountType } from './../../../shared/constants/account-type';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Countries } from 'src/app/shared/constants/countries';
 import { Gender } from 'src/app/shared/constants/gender';
@@ -12,7 +17,7 @@ import { ConfirmedValidator } from './confirmed-validator';
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss'],
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit, AfterViewChecked {
   primaryAccountFormData!: FormGroup;
   passwordsAccountFormData!: FormGroup;
   detailsAccountFormData!: FormGroup;
@@ -26,7 +31,8 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    private readonly langService: LangService
+    private readonly langService: LangService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -85,6 +91,10 @@ export class RegisterPageComponent implements OnInit {
       address1: [''],
       address2: [''],
     });
+  }
+
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
   }
 
   // getters

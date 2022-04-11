@@ -25,9 +25,7 @@ export class LangService {
     localStorage.setItem(this.CLIENT_LANG_LC, lang);
     this.currentLang = lang;
     if (user) {
-      this.http
-        .put<ISuccessResponse<string>>(`${this.api}/${user.id}`, { lang })
-        .subscribe();
+      this.http.put<ISuccessResponse<string>>(this.api, { lang }).subscribe();
     }
     this.setTranslateServiceLang();
   }

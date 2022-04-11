@@ -40,8 +40,8 @@ export class TopbarNonAuthDropdownComponent implements OnInit {
       toastMessageType.INFO,
       5
     );
-    setTimeout(() => {
-      location.reload();
-    }, 5000);
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 5000);
   }
 }

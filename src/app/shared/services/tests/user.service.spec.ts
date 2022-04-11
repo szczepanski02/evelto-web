@@ -42,12 +42,9 @@ describe('UserService', () => {
   it('should get authorizated user with realtions', () => {
     service.getUserWithRelations().subscribe((response) => {
       const user = response.body;
-      console.log(user);
       expect(user).toEqual(_userDBMock[1]);
     });
-    const req = httpMock.expectOne(
-      `${service.api}/getWithRelations/${_userDBMock[1].id}`
-    );
+    const req = httpMock.expectOne(`${service.api}/getWithRelations`);
     expect(req.request.method).toBe('GET');
     req.flush(HttpResponseMock(200, _userDBMock[1]));
   });

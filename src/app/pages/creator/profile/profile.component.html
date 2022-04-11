@@ -1,10 +1,12 @@
 <div class="profile slide-in-right">
-  <!-- <div class="profile__actions">
+  <div class="profile__actions">
     <button mat-raised-button color="primary-green-btn">
       Change password
     </button>
+    <button mat-raised-button color="accent" [disabled]="!(this.primaryAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)" (click)="saveChanges()">Save changes</button>
+
     <button mat-raised-button color="warn">Reset values</button>
-  </div> -->
+  </div>
   <div class="row">
     <div>
       <app-profile-previewer></app-profile-previewer>
@@ -47,38 +49,6 @@
               </div>
             </mat-form-field>
           </div>
-          <div class="profile__row">
-            <mat-form-field appearance="outline" color="accent">
-              <mat-label>{{ 'register.label.firstName' | translate }}</mat-label>
-              <input matInput placeholder="{{ 'register.label.firstName' | translate }}" formControlName="firstName" class="form-control" required>
-              <div *ngIf="fPrimary['firstName'].touched && fPrimary['firstName'].errors" class="profile__validator">
-                <div *ngIf="fPrimary['firstName'].errors['required']">
-                  {{ 'register.validation.required' | translate }}
-                </div>
-                <div *ngIf="fPrimary['firstName'].errors['minlength']">
-                  {{ 'register.validation.minLength' | translate: { min: fPrimary['firstName'].errors['minlength'].requiredLength } }}
-                </div>
-                <div *ngIf="fPrimary['firstName'].errors['maxlength']">
-                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['firstName'].errors['maxlength'].requiredLength } }}
-                </div>
-              </div>
-            </mat-form-field>
-            <mat-form-field appearance="outline" color="accent">
-              <mat-label>{{ 'register.label.lastName' | translate }}</mat-label>
-              <input matInput placeholder="{{ 'register.label.lastName' | translate }}" formControlName="lastName" class="form-control" required>
-              <div *ngIf="fPrimary['lastName'].touched && fPrimary['lastName'].errors" class="profile__validator">
-                <div *ngIf="fPrimary['lastName'].errors['required']">
-                  {{ 'register.validation.required' | translate }}
-                </div>
-                <div *ngIf="fPrimary['lastName'].errors['minlength']">
-                  {{ 'register.validation.minLength' | translate: { min: fPrimary['lastName'].errors['minlength'].requiredLength } }}
-                </div>
-                <div *ngIf="fPrimary['lastName'].errors['maxlength']">
-                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['lastName'].errors['maxlength'].requiredLength } }}
-                </div>
-              </div>
-            </mat-form-field>
-          </div>
         </form>
       </div>
     </mat-card>
@@ -115,7 +85,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline" color="accent">
               <mat-label>Phone number</mat-label>
-              <input matInput placeholder="Phone number" formControlName="phoneNumber" class="form-control" required />
+              <input matInput placeholder="Phone number" formControlName="phoneNumber" class="form-control" />
             </mat-form-field>
           </div>
         </form>

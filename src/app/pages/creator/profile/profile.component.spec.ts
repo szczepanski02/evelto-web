@@ -5,6 +5,7 @@ import { SharedTranslateModule } from './../../../shared/shared-translate.module
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserService } from 'src/app/shared/services/user.service';
+import { FormBuilder } from '@angular/forms';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -15,6 +16,7 @@ describe('ProfileComponent', () => {
       imports: [HttpClientTestingModule, SharedTranslateModule],
       declarations: [ProfileComponent],
       providers: [
+        FormBuilder,
         {
           provide: UserService,
           useValue: {

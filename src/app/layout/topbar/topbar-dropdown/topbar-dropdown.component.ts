@@ -54,8 +54,8 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
       toastMessageType.INFO,
       5
     );
-    setTimeout(() => {
-      location.reload();
-    }, 5000);
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 5000);
   }
 }

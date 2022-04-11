@@ -1,21 +1,31 @@
+import { ToastMessageService } from 'src/app/shared/reusable-components/toast-message/toast-message.service';
+import { Router } from '@angular/router';
 import { IRefreshToken } from './../../../shared/interfaces/IUser';
 import { Subscription } from 'rxjs';
 import { ICreator } from './../../../shared/interfaces/ICreator';
 import { UserService } from './../../../shared/services/user.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewChecked,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ClientIsActive } from 'src/app/shared/constants/client-is-active';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Gender } from 'src/app/shared/constants/gender';
 import { Countries } from 'src/app/shared/constants/countries';
+import { toastMessageType } from 'src/app/shared/constants/toastMessageType';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
   client?: ICreator;
   getClientDataSub?: Subscription;
+  updateSub?: Subscription;
 
   countries = Countries;
   refreshTokens?: IRefreshToken[];
@@ -32,14 +42,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly userService: UserService,
-    private _formBuilder: FormBuilder
-  ) {}
+    private _formBuilder: FormBuilder,
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+    private toastMessageService: ToastMessageService
+  ) { }
 
   ngOnInit(): void {
     this.getClientDataSub = this.userService
       .getUserWithRelations()
       .subscribe((response) => {
         this.client = response.body;
+        console.log(this.client);
         this.refreshTokens = response.body.refreshTokens;
         this.loadDataIntoInputs();
         if (
@@ -58,22 +72,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(16),
-        ],
-      ],
-      firstName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(28),
-        ],
-      ],
-      lastName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(28),
         ],
       ],
       email: ['', [Validators.required, Validators.maxLength(48)]],
@@ -95,15 +93,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
+  }
+
   ngOnDestroy(): void {
     this.getClientDataSub?.unsubscribe();
+    this.updateSub?.unsubscribe();
   }
 
   loadDataIntoInputs(): void {
     this.primaryAccountFormData!.setValue({
       username: this.client?.username,
-      firstName: this.client?.firstName,
-      lastName: this.client?.lastName,
       email: this.client?.email,
     });
     this.detailsAccountFormData!.setValue({
@@ -123,7 +124,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  inputValueChanged(): void {}
+  inputValueChanged(): void { }
 
   // getters
   get fPrimary() {
@@ -135,4 +136,29 @@ export class ProfileComponent implements OnInit, OnDestroy {
   get fAddress() {
     return this.addressAccountFormData.controls;
   }
+
+  saveChanges(): void {
+    const updateDto = {
+      username: this.fPrimary['username'].value,
+      email: this.fPrimary['email'].value,
+      gender: this.fDetails['gender'].value,
+      birthDate: this.fDetails['birthDate'].value,
+      phoneNumber: this.fDetails['phoneNumber'].value,
+      profileImg: this.fDetails['profileImg'].value,
+      country: this.fAddress['country'].value,
+      city: this.fAddress['city'].value,
+      zipCode: this.fAddress['zipCode'].value,
+      address1: this.fAddress['address1'].value
+    }
+    this.updateSub = this.userService.updateProfile(updateDto).subscribe(response => {
+      this.router.navigate(['/creator/home']);
+      this.toastMessageService.setMessage(
+        'Profile',
+        response.body,
+        toastMessageType.INFO,
+        5
+      );
+    });
+  }
+
 }
