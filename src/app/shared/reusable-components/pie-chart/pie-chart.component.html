@@ -1,0 +1,30 @@
+<div class="pie" #pieEl>
+  <mat-card>
+    <div class="pie__container">
+      <div class="pie__chart">
+        <canvas baseChart [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions">
+        </canvas>
+      </div>
+      <div class="pie__rightSide">
+        <h2 class="pie__title">{{ title }}</h2>
+        <div class="divider-primary"></div>
+        <div class="pie__labels" #labelsEl>
+
+          <div class="pie__label" *ngFor="let item of data" [ngStyle]="{ borderColor: item.color }">
+            <h3 class="pie__label-title">{{ item.label }}</h3>
+            <div class="pie__label-amount">
+              <p class="pie__label-amount-main">
+                {{ item.value }}
+                <span class="pie__label-amount-today" [ngStyle]="{ color: item.color }">+{{ item.toDay }}</span>
+              </p>
+            </div>
+            <div class="dot" [ngStyle]="{ backgroundColor: item.color }"></div>
+          </div>
+        </div>
+        <div class="pie__buttons">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

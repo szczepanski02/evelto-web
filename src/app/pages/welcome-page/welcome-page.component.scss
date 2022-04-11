@@ -1,0 +1,19 @@
+.welcome {
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100 - 120px);
+  background: url('../../../assets/images/welcome-page/moon.svg') center/cover no-repeat;
+}
+
+.header {
+
+  margin-top: 30vh;
+
+  &__left-side {
+    max-width: 30%;
+  }
+
+  &__company-name {
+    font-size: 72px;
+    line-height: 78px;
+  }
+}

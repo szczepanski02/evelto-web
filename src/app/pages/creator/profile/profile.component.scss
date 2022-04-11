@@ -23,7 +23,7 @@
     margin-top: 20px;
   }
 
-  &__bar {
+  &__actions {
     margin-bottom: 20px;
     display: flex;
     justify-content: end;
@@ -33,9 +33,20 @@
     }
   }
 
-  &__col {
+  &__row {
     display: flex;
     justify-content: space-between;
+
+    & mat-form-field {
+      width: 260px;
+    }
+
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
   }
 
   &__main {

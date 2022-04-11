@@ -70,6 +70,11 @@
   &__router {
     width: 100%;
     margin-top: 80px;
+    margin-left: 80px;
+
+    @media(max-width: 548px) {
+      margin-left: 0;
+    }
   }
 
 }

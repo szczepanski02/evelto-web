@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home {
+  &__firstName {
+    color: var(--primary);
+  }
+
+  &__welcome {
+    min-width: 900px;
+  }
+
+  &__notifications {
+    margin-left: 20px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,82 @@
+.pie {
+  &__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  &__chart {
+    max-width: 260px;
+    max-height: 260px;
+    margin-right: 20px;
+  }
+
+  &__labels {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-size: 26px;
+  }
+
+  &__label {
+    width: 140px;
+    border-radius: var(--border-radius-main);
+    border-radius: 0 var(--border-radius-main) var(--border-radius-main) 0;
+    border: 0;
+    border-right: 4px;
+    border-style: solid;
+    padding: 10px;
+    position: relative;
+    box-shadow: var(--box-shadow-main);
+
+    &-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #c3c3c3;
+    }
+
+    &-amount {
+
+      &-main {
+        font-size: 26px;
+        position: relative;
+      }
+
+      &-today {
+        font-size: 14px;
+        font-weight: bold;
+        position: absolute;
+        top: -10px;
+        padding-left: 4px;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    justify-content: flex-end;
+    bottom: -72px;
+  }
+
+  &__rightSide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}

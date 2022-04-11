@@ -1,7 +1,6 @@
 import { LangService } from './../../../shared/services/lang.service';
 import { AuthService } from './../../../shared/services/auth.service';
 import { AccountType } from './../../../shared/constants/account-type';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Countries } from 'src/app/shared/constants/countries';

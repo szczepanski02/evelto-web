@@ -1,3 +1,21 @@
 <div class="home slide-in-right">
-  Home creator page
+  <h1>Welcome, <span class="home__firstName">{{ client?.firstName }}</span></h1>
+  <div class="divider-accent"></div>
+  <div class="row">
+    <div class="home__welcome">
+      <app-pie-chart [data]="pieData" [title]="'Wrocławska 22 Pub'">
+        <button mat-raised-button color="accent">Check details</button>
+      </app-pie-chart>
+    </div>
+
+    <div class="home__notifications">
+      <mat-card>
+        <h1>Notifications</h1>
+        <div class="divider-primary-green"></div>
+        <mat-card-content>
+          There will be a notifications list
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>

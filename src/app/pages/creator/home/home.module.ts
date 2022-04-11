@@ -4,20 +4,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
-
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     SharedModule,
     TranslateModule,
-    RouterModule.forChild([
-      { path: '', component: HomeComponent }
-    ])
-  ]
+    NgChartsModule,
+    RouterModule.forChild([{ path: '', component: HomeComponent }]),
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

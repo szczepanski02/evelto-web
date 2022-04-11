@@ -15,10 +15,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WelcomePageComponent
-  ],
+  declarations: [AppComponent, WelcomePageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,11 +26,15 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     LayoutModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpCredentialsInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpCredentialsInterceptor,
+      multi: true,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpLangInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

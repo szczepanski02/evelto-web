@@ -1,7 +1,7 @@
 import { Gender } from './../constants/gender';
-import { AccountType } from "../constants/account-type";
-import { ClientIsActive } from "../constants/client-is-active";
-import { Lang } from "../constants/lang";
+import { AccountType } from '../constants/account-type';
+import { ClientIsActive } from '../constants/client-is-active';
+import { Lang } from '../constants/lang';
 
 export interface IUser {
   id: string;
@@ -11,15 +11,17 @@ export interface IUser {
   email: string;
   lang: Lang;
   accountType: AccountType;
+  createdBy: string;
   isActive: ClientIsActive;
   userDetails?: IUserDetails;
   refreshTokens?: IRefreshToken[];
 }
 
 export interface IUserDetails {
-  id: string;
+  id: number;
   profileImg?: string;
-  bithDate?: Date;
+  phoneNumber?: string;
+  birthDate?: Date;
   gender: Gender;
   createdAt: Date;
   userAddress?: IUserAddress;
@@ -34,9 +36,14 @@ export interface IRefreshToken {
 
 export interface IUserAddress {
   id: number;
-  country: string;
-  city: string;
-  zipCode: number;
-  address1: string;
-  address2: string;
+  country?: string;
+  city?: string;
+  zipCode?: string;
+  address1?: string;
+  address2?: string;
+}
+
+export interface ICreatorDetails {
+  id: number;
+  verificated: boolean;
 }

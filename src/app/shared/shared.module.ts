@@ -1,25 +1,16 @@
-import { SharedTranslateModule } from './shared-translate.module';
+import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './ng-material.module';
-import { ToastMessageComponent } from './reusable-components/toast-message/toast-message.component';
 import { ShowIfBetweenWidthDirective } from './directives/show-if-between-width.directive';
 
-
-
 @NgModule({
-  declarations: [
-    ToastMessageComponent,
-    ShowIfBetweenWidthDirective,
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
+  declarations: [ShowIfBetweenWidthDirective],
+  imports: [CommonModule, MaterialModule, ReusableComponentsModule],
   exports: [
     MaterialModule,
-    ToastMessageComponent,
-    ShowIfBetweenWidthDirective
-  ]
+    ReusableComponentsModule,
+    ShowIfBetweenWidthDirective,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

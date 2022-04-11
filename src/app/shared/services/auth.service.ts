@@ -19,21 +19,21 @@ import { CountriesEnum } from '../constants/countries';
   providedIn: 'root',
 })
 export class AuthService {
-  private api = `${environment.apiUrl}/auth`;
+  readonly api = `${environment.apiUrl}/auth`;
 
   private authorizatedUser?: IAuthorizatedUser;
   private isAuthorizated: Subject<boolean> = new BehaviorSubject<boolean>(
     false
   );
 
-  private _redirectLs = 'redirect_to';
+  readonly _redirectLs = 'redirect_to';
 
   constructor(
     private readonly http: HttpClient,
-    private readonly router: Router,
-    private readonly jwtService: JwtService,
-    private readonly toastMessageService: ToastMessageService,
-    private readonly translateService: TranslateService
+    readonly jwtService: JwtService,
+    readonly toastMessageService: ToastMessageService,
+    readonly translateService: TranslateService,
+    readonly router: Router
   ) {}
 
   login(payload: ILoginPayload): void {

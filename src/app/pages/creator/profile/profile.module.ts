@@ -3,19 +3,15 @@ import { ProfileComponent } from './profile.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [
-    ProfileComponent
-  ],
+  declarations: [ProfileComponent],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild([
-      { path: '', component: ProfileComponent }
-    ])
-  ]
+    TranslateModule,
+    RouterModule.forChild([{ path: '', component: ProfileComponent }]),
+  ],
 })
-export class ProfileModule { }
+export class ProfileModule {}

@@ -11,10 +11,9 @@ import { toastMessageType } from 'src/app/shared/constants/toastMessageType';
 @Component({
   selector: 'app-topbar-dropdown',
   templateUrl: './topbar-dropdown.component.html',
-  styleUrls: ['./topbar-dropdown.component.scss']
+  styleUrls: ['./topbar-dropdown.component.scss'],
 })
 export class TopbarDropdownComponent implements OnInit, OnDestroy {
-
   langEnum: typeof Lang = Lang;
 
   user?: IAuthorizatedUser;
@@ -23,14 +22,14 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly langService: LangService,
+    readonly langService: LangService,
     private readonly toastMessageService: ToastMessageService,
-    private readonly translateService: TranslateService
-  ) { }
+    readonly translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.settedLang = String(this.langService.getLang());
-    this.userSub = this.authService.getUserFromToken().subscribe(response => {
+    this.userSub = this.authService.getUserFromToken().subscribe((response) => {
       this.user = response.body;
     });
   }
@@ -44,7 +43,7 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
   }
 
   switchLang(lang: Lang) {
-    if(lang === this.settedLang) {
+    if (lang === this.settedLang) {
       return;
     }
     this.settedLang = String(lang);
@@ -59,5 +58,4 @@ export class TopbarDropdownComponent implements OnInit, OnDestroy {
       location.reload();
     }, 5000);
   }
-
 }

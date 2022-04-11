@@ -7,20 +7,20 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private api = `${environment.apiUrl}/user`;
+  readonly api = `${environment.apiUrl}/user`;
 
   constructor(
     private readonly authService: AuthService,
     private readonly http: HttpClient
-  ) { }
-  
+  ) {}
+
   getUserWithRelations(): Observable<ISuccessResponse<ICreator>> {
     const clientId = this.authService.getAuthorizatedUser()?.id;
-    return this.http.get<ISuccessResponse<ICreator>>(`${this.api}/getWithRelations/${clientId}`);
+    return this.http.get<ISuccessResponse<ICreator>>(
+      `${this.api}/getWithRelations/${clientId}`
+    );
   }
-
-
 }

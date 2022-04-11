@@ -1,87 +1,176 @@
 <div class="profile slide-in-right">
+  <div class="profile__actions">
+    <button mat-raised-button color="primary-green-btn">
+      Change password
+    </button>
+    <button mat-raised-button color="warn">Reset values</button>
+  </div>
   <div class="row">
+    <div>
+      <app-profile-previewer></app-profile-previewer>
+    </div>
+
     <mat-card class="profile__main">
       <h2>Main account properties</h2>
       <div class="divider-primary"></div>
       <div class="profile__form">
-        <div class="profile__bar">
-          <button mat-raised-button color="accent" (click)="changeMainEditModeState()">
-            {{ mainEditModeEnabled ? "Save changes" : "Edit mode" }}
-          </button>
-          <button mat-raised-button color="warn">Reset values</button>
-        </div>
-        <div class="profile__col">
-          <mat-form-field appearance="outline" color="accent">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="Username" [(ngModel)]="usernameValue" (ngModelChange)="inputValueChanged()" [disabled]="!mainEditModeEnabled" />
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" [(ngModel)]="emailValue" (ngModelChange)="inputValueChanged()" [disabled]="!mainEditModeEnabled" />
-          </mat-form-field>
-        </div>
-        <div class="profile__col">
-          <mat-form-field appearance="outline" color="accent">
-            <mat-label>First name</mat-label>
-            <input matInput placeholder="First name" [(ngModel)]="firstNameValue" (ngModelChange)="inputValueChanged()" [disabled]="!mainEditModeEnabled" />
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent">
-            <mat-label>Last name</mat-label>
-            <input matInput placeholder="Last name" [(ngModel)]="lastNameValue" (ngModelChange)="inputValueChanged()" [disabled]="!mainEditModeEnabled" />
-          </mat-form-field>
-        </div>
+        <form [formGroup]="primaryAccountFormData">
+          <div class="profile__row">
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.username' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.username' | translate }}" formControlName="username" class="form-control" required />
+              <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="profile__validator">
+                <div *ngIf="fPrimary['username'].errors['required']">
+                  {{ 'register.validation.required' | translate }}
+                </div>
+                <div *ngIf="fPrimary['username'].errors['minlength']">
+                  {{ 'register.validation.minLength' | translate: { min: fPrimary['username'].errors['minlength'].requiredLength } }}
+                </div>
+                <div *ngIf="fPrimary['username'].errors['maxlength']">
+                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['username'].errors['maxlength'].requiredLength } }}
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email" class="form-control" required>
+              <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="profile__validator">
+                <div *ngIf="fPrimary['email'].errors['required']">
+                  {{ 'register.validation.required' | translate }}
+                </div>
+                <div *ngIf="fPrimary['email'].errors['minlength']">
+                  {{ 'register.validation.minLength' | translate: { min: fPrimary['email'].errors['minlength'].requiredLength } }}
+                </div>
+                <div *ngIf="fPrimary['email'].errors['maxlength']">
+                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['email'].errors['maxlength'].requiredLength } }}
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="profile__row">
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.firstName' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.firstName' | translate }}" formControlName="firstName" class="form-control" required>
+              <div *ngIf="fPrimary['firstName'].touched && fPrimary['firstName'].errors" class="profile__validator">
+                <div *ngIf="fPrimary['firstName'].errors['required']">
+                  {{ 'register.validation.required' | translate }}
+                </div>
+                <div *ngIf="fPrimary['firstName'].errors['minlength']">
+                  {{ 'register.validation.minLength' | translate: { min: fPrimary['firstName'].errors['minlength'].requiredLength } }}
+                </div>
+                <div *ngIf="fPrimary['firstName'].errors['maxlength']">
+                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['firstName'].errors['maxlength'].requiredLength } }}
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.lastName' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.lastName' | translate }}" formControlName="lastName" class="form-control" required>
+              <div *ngIf="fPrimary['lastName'].touched && fPrimary['lastName'].errors" class="profile__validator">
+                <div *ngIf="fPrimary['lastName'].errors['required']">
+                  {{ 'register.validation.required' | translate }}
+                </div>
+                <div *ngIf="fPrimary['lastName'].errors['minlength']">
+                  {{ 'register.validation.minLength' | translate: { min: fPrimary['lastName'].errors['minlength'].requiredLength } }}
+                </div>
+                <div *ngIf="fPrimary['lastName'].errors['maxlength']">
+                  {{ 'register.validation.maxLength' | translate: { max: fPrimary['lastName'].errors['maxlength'].requiredLength } }}
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="row">
+    <!-- DETAILS -->
+    <mat-card class="profile__details">
+      <h2>Details</h2>
+      <div class="divider-primary-yellow"></div>
+      <div class="profile__form">
+        <form [formGroup]="detailsAccountFormData">
+          <div class="profile__row">
+            <mat-form-field class="example-full-width" appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.dateOfBirth' | translate }}</mat-label>
+              <input matInput [min]="minBirthDate" [max]="maxBirthDate" [matDatepicker]="picker" formControlName="birthDate" />
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+              There will be a profile photo uploader
+            </div>
+          </div>
+          <div class="profile__row">
+            <mat-form-field class="example-full-width" appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.gender' | translate }}</mat-label>
+              <mat-select matNativeControl formControlName="gender" required>
+                <mat-option value="MALE">{{ 'register.label.male' | translate }}</mat-option>
+                <mat-option value="FEMALE">{{ 'register.label.female' | translate }}</mat-option>
+                <mat-option value="OTHER">{{ 'register.label.other' | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>Phone number</mat-label>
+              <input matInput placeholder="Phone number" formControlName="phoneNumber" class="form-control" required />
+            </mat-form-field>
+          </div>
+        </form>
       </div>
     </mat-card>
 
+    <!-- ADDRESS -->
     <mat-card class="profile__details">
-      <h2>Details</h2>
-      <div class="divider-primary-green"></div>
+      <h2>Address</h2>
+      <div class="divider-accent"></div>
       <div class="profile__form">
-        <div class="profile__bar">
-          <button mat-raised-button color="accent" (click)="changeDetailsEditModeState()">
-            {{ detailsEditModeEnabled ? "Save changes" : "Edit mode" }}
-          </button>
-          <button mat-raised-button color="warn">Reset values</button>
-        </div>
+        <form [formGroup]="addressAccountFormData">
+          <div class="profile__row">
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.country' | translate }}</mat-label>
+              <mat-select matNativeControl formControlName="country">
+                <mat-option *ngFor="let country of countries" [value]="country.key" class="register__form-country">
+                  <img [src]="'../../../../assets/images/countries/' + country.icon" width="20px" alt="" class="register__form-country-icon">
+                  <span class="register__form-country-key">{{ country.key }}</span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <div class="profile__col">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Date of birth</mat-label>
-            <input matInput [min]="minBirthDate" [max]="maxBirthDate" [matDatepicker]="picker" [(ngModel)]="birthDateValue" (ngModelChange)="inputValueChanged()" [disabled]="!detailsEditModeEnabled" />
-            <mat-datepicker-toggle matSuffix [for]="picker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <div>
-            <h3>There will be a profile img editor</h3>
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>{{ 'register.label.city' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.city' | translate }}" formControlName="city" class="form-control" />
+            </mat-form-field>
           </div>
-        </div>
+          <div class="profile__row">
+            <mat-form-field appearance="outline" color="accent" class="register__form-small-input">
+              <mat-label>{{ 'register.label.zipCode' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.zipCode' | translate }}" formControlName="zipCode" class="form-control" />
+            </mat-form-field>
 
-        <div class="profile__col">
-          <mat-form-field appearance="outline">
-            <mat-label>Gender</mat-label>
-            <select matNativeControl required [(ngModel)]="genderValue" (ngModelChange)="inputValueChanged()" [disabled]="!detailsEditModeEnabled">
-              <option value="MALE">Male</option>
-              <option value="FEMALE">Female</option>
-              <option value="OTHER">Other</option>
-            </select>
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="outline" color="accent" class="register__form-small-input">
+              <mat-label>{{ 'register.label.numberSt' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.numberSt' | translate }}" formControlName="address1" class="form-control" />
+            </mat-form-field>
+          </div>
+        </form>
       </div>
     </mat-card>
   </div>
 
   <div class="row-2">
+
     <mat-card class="profile__creator">
-      <h2>Creator settings</h2>
-      <div class="divider-accent"></div>
+      <h2>Creator</h2>
+      <div class="divider-primary-green"></div>
     </mat-card>
 
     <mat-card class="profile__sessions">
       <h2>Sessions</h2>
-      <div class="divider-primary-yellow"></div>
+      <div class="divider-primary"></div>
     </mat-card>
+
   </div>
 </div>
