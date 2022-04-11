@@ -16,6 +16,7 @@
 
 body {
   background-color: var(--dark-bg);
+  // background: url('./assets/images/chart-bg.svg') no-repeat center/cover;
   color: var(--font-light);
   margin: 0;
   padding: 0;
@@ -64,6 +65,14 @@ body {
 .bg-darken {
   background-color: var(--darken-bg);
   color: var(--font-light);
+}
+
+.tableContainer {
+  max-width: 1250px;
+}
+
+.tableContainer table {
+  width: 100%;
 }
 
 h1,

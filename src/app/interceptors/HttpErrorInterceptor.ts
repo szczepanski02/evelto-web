@@ -44,6 +44,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         if (err.error.message && err.status !== 403 && err.status !== 401) {
           console.log(err.error);
           if (err.error.message.message) {
+            console.log(err.error.message.message);
             this.toastMessageService.setMessage(
               'Error',
               'Invalid request, please raport it to administrator',

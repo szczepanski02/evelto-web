@@ -1,10 +1,10 @@
 <div class="profile slide-in-right">
-  <div class="profile__actions">
+  <!-- <div class="profile__actions">
     <button mat-raised-button color="primary-green-btn">
       Change password
     </button>
     <button mat-raised-button color="warn">Reset values</button>
-  </div>
+  </div> -->
   <div class="row">
     <div>
       <app-profile-previewer></app-profile-previewer>
@@ -170,6 +170,7 @@
     <mat-card class="profile__sessions">
       <h2>Sessions</h2>
       <div class="divider-primary"></div>
+      <app-profile-sessions *ngIf="refreshTokens" [refreshTokens]="refreshTokens"></app-profile-sessions>
     </mat-card>
 
   </div>

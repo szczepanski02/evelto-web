@@ -4,9 +4,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProfileSessionsComponent } from './profile-sessions/profile-sessions.component';
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, ProfileSessionsComponent],
   imports: [
     CommonModule,
     SharedModule,

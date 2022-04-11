@@ -1,3 +1,4 @@
+import { IRefreshToken } from './../../../shared/interfaces/IUser';
 import { Subscription } from 'rxjs';
 import { ICreator } from './../../../shared/interfaces/ICreator';
 import { UserService } from './../../../shared/services/user.service';
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   getClientDataSub?: Subscription;
 
   countries = Countries;
+  refreshTokens?: IRefreshToken[];
 
   // form inputs
   birthDateValue?: Date;
@@ -38,7 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .getUserWithRelations()
       .subscribe((response) => {
         this.client = response.body;
-        console.log(response.body);
+        this.refreshTokens = response.body.refreshTokens;
         this.loadDataIntoInputs();
         if (
           response.body &&
