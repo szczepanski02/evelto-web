@@ -1,15 +1,15 @@
 <div class="profile slide-in-right">
   <div class="profile__actions">
-    <button mat-raised-button color="primary-green-btn">
+    <button mat-raised-button color="primary-green-btn" [hideIfCreatedBy]="['GOOGLE', 'FACEBOOK']" (click)="passwordChangeClick()">
       Change password
     </button>
     <button mat-raised-button color="accent" [disabled]="!(this.primaryAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)" (click)="saveChanges()">Save changes</button>
 
-    <button mat-raised-button color="warn">Reset values</button>
+    <button mat-raised-button color="warn" (click)="loadDataIntoInputs()">Reset values</button>
   </div>
   <div class="row">
     <div>
-      <app-profile-previewer></app-profile-previewer>
+      <app-profile-previewer *ngIf="client" [user]="client"></app-profile-previewer>
     </div>
 
     <mat-card class="profile__main">
@@ -21,7 +21,7 @@
             <mat-form-field appearance="outline" color="accent">
               <mat-label>{{ 'register.label.username' | translate }}</mat-label>
               <input matInput placeholder="{{ 'register.label.username' | translate }}" formControlName="username" class="form-control" required />
-              <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="profile__validator">
+              <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="form-validators">
                 <div *ngIf="fPrimary['username'].errors['required']">
                   {{ 'register.validation.required' | translate }}
                 </div>
@@ -36,7 +36,7 @@
             <mat-form-field appearance="outline" color="accent">
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email" class="form-control" required>
-              <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="profile__validator">
+              <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="form-validators">
                 <div *ngIf="fPrimary['email'].errors['required']">
                   {{ 'register.validation.required' | translate }}
                 </div>
@@ -102,9 +102,9 @@
             <mat-form-field appearance="outline" color="accent">
               <mat-label>{{ 'register.label.country' | translate }}</mat-label>
               <mat-select matNativeControl formControlName="country">
-                <mat-option *ngFor="let country of countries" [value]="country.key" class="register__form-country">
-                  <img [src]="'../../../../assets/images/countries/' + country.icon" width="20px" alt="" class="register__form-country-icon">
-                  <span class="register__form-country-key">{{ country.key }}</span>
+                <mat-option *ngFor="let country of countries" [value]="country.key" class="profile__form-country">
+                  <img [src]="'../../../../assets/images/countries/' + country.icon" width="20px" alt="" class="profile__form-country-icon">
+                  <span class="profile__form-country-key">{{ country.key }}</span>
                 </mat-option>
               </mat-select>
             </mat-form-field>

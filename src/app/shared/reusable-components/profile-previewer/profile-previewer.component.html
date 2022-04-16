@@ -5,7 +5,7 @@
       <span>Radosław Szczepański</span>
     </div>
     <div class="preview__type">
-      <span>Creator</span>
+      <span>{{ user?.accountType | accountTypeTranslate }}</span>
       <div class="preview__rounded"></div>
     </div>
   </div>
@@ -14,35 +14,35 @@
     <div class="preview__col">
       <div class="preview__key">
         <mat-icon>account_circle</mat-icon>
-        <span class="preview__value">rszczepanski</span>
+        <span class="preview__value">{{ user?.username }}</span>
       </div>
       <div class="preview__key">
         <mat-icon>email</mat-icon>
-        <span class="preview__value">rszczepanski@domain.com</span>
+        <span class="preview__value">{{ user?.email }}</span>
       </div>
       <div class="preview__key">
         <mat-icon>phone_iphone</mat-icon>
-        <span class="preview__value">+48 733 593 336</span>
+        <span class="preview__value">{{ user?.userDetails?.phoneNumber }}</span>
       </div>
       <div class="preview__key">
         <mat-icon>flag</mat-icon>
-        <span class="preview__value">Poland</span>
+        <span class="preview__value">{{ user?.userDetails?.userAddress?.country }}</span>
       </div>
 
       <div class="preview__key">
         <mat-icon>verified</mat-icon>
-        <span class="preview__value">Yes</span>
+        <span class="preview__value">{{ user?.creatorDetails?.isVerificated ? 'Yes' : 'No' }}</span>
       </div>
     </div>
 
     <div class="preview__col">
       <div class="preview__key">
         <mat-icon>date_range</mat-icon>
-        <span class="preview__value">17.01.2002</span>
+        <span class="preview__value">{{ user?.userDetails?.birthDate | date:'mediumDate' }}</span>
       </div>
       <div class="preview__key">
         <mat-icon>man</mat-icon>
-        <span class="preview__value">Male</span>
+        <span class="preview__value">{{ user?.userDetails?.gender | genderTranslate }}</span>
       </div>
     </div>
   </mat-card-content>

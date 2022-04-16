@@ -15,7 +15,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(
     private readonly toastMessageService: ToastMessageService,
     private readonly translateService: TranslateService
-  ) {}
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(req).pipe(
@@ -49,13 +49,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               toastMessageType.ERROR,
               5
             );
+          } else {
+            this.toastMessageService.setMessage(
+              'Error',
+              err.error.message,
+              toastMessageType.ERROR,
+              5
+            );
           }
-          this.toastMessageService.setMessage(
-            'Error',
-            err.error.message,
-            toastMessageType.ERROR,
-            5
-          );
         }
         return of(false);
       })

@@ -35,7 +35,8 @@
     "accountError": "Some problem with your account, please contact with support",
     "alreadyLoggedIn": "You are already logged in",
     "signInViaGoogleError": "Error at login via google, please contact with support",
-    "noAuthorized": "You are not authorized to perform this operation"
+    "noAuthorized": "You are not authorized to perform this operation",
+    "sessionRemoved": "Session has been removed successfully"
   },
   "lang": {
     "notificationTitle": "Application",
@@ -48,6 +49,7 @@
       "firstName": "First name",
       "lastName": "Last name",
       "password": "Password",
+      "currentPassword": "Current password",
       "confirmPassword": "Confirm password",
       "dateOfBirth": "Date of birth",
       "gender": "Gender",
@@ -75,5 +77,14 @@
     "required": "* required inputs are advisable by asterisk",
     "completed": "Your account has been completed, thanks for your time. We hope, you have completed truthful data.",
     "formComplete": "Form is complete:"
+  },
+  "genders": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "accountType": {
+    "creator": "Creator",
+    "client": "Client"
   }
 }

@@ -26,6 +26,15 @@ export class UserService {
       updateProfileDto
     );
   }
+
+  changePassword(updatePasswordDto: IUpdateUserPassword): Observable<ISuccessResponse<string>> {
+    return this.http.put<ISuccessResponse<string>>(`${this.api}/changePassword`, updatePasswordDto);
+  }
+}
+
+interface IUpdateUserPassword {
+  currentPassword: string;
+  newPassword: string;
 }
 
 export interface IUpdateUserProfile {

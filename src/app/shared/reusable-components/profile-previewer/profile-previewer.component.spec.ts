@@ -1,6 +1,9 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePreviewerComponent } from './profile-previewer.component';
+import { SharedTranslateModule } from '../../shared-translate.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProfilePreviewerComponent', () => {
   let component: ProfilePreviewerComponent;
@@ -8,9 +11,10 @@ describe('ProfilePreviewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfilePreviewerComponent ]
+      imports: [HttpClientTestingModule, PipesModule, SharedTranslateModule],
+      declarations: [ProfilePreviewerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,33 +1,31 @@
+import { UserService } from 'src/app/shared/services/user.service';
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { WindowSizeService } from "../services/window-size.service";
 
 @Directive({
-  selector: `[showIfWidthBetween]`
+  selector: `[hideIfCreatedBy]`
 })
-export class ShowIfBetweenWidthDirective implements OnInit, OnDestroy {
+export class HideIfCreatedByDirective implements OnInit, OnDestroy {
 
   private subscription?: Subscription;
-  private min?: number;
-  private max?: number;
+  private requiredState?: string[];
 
   private backedUpDisplay?: string;
 
-  constructor(private windowSizeService: WindowSizeService, private domEl: ElementRef) { }
+  constructor(private domEl: ElementRef, private userService: UserService) { }
 
   @Input()
-  set showIfWidthBetween(state: number[]) {
-    this.min = state[0];
-    this.max = state[1];
+  set hideIfCreatedBy(state: string[]) {
+    this.requiredState = state;
   }
 
   ngOnInit(): void {
-    this.subscription = this.windowSizeService.getSize().subscribe(size => {
-      if (!this.min || !this.max) return;
-      if (this.min <= size.width && size.width < this.max) {
-        this.showDomEl();
-      } else {
+    this.subscription = this.userService.getUserWithRelations().subscribe(response => {
+      const user = response.body;
+      if (this.requiredState?.includes(user.createdBy)) {
         this.hideDomEl();
+      } else {
+        this.showDomEl();
       }
     });
   }

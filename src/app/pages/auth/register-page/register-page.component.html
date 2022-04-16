@@ -18,7 +18,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>{{ 'register.label.username' | translate }}</mat-label>
                     <input matInput placeholder="{{ 'register.label.username' | translate }}" formControlName="username" class="form-control" required />
-                    <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="register__validator">
+                    <div *ngIf="fPrimary['username'].touched && fPrimary['username'].errors" class="form-validators">
                       <div *ngIf="fPrimary['username'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>
@@ -33,7 +33,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>Email</mat-label>
                     <input matInput placeholder="Email" formControlName="email" class="form-control" required>
-                    <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="register__validator">
+                    <div *ngIf="fPrimary['email'].touched && fPrimary['email'].errors" class="form-validators">
                       <div *ngIf="fPrimary['email'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>
@@ -50,7 +50,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>{{ 'register.label.firstName' | translate }}</mat-label>
                     <input matInput placeholder="{{ 'register.label.firstName' | translate }}" formControlName="firstName" class="form-control" required>
-                    <div *ngIf="fPrimary['firstName'].touched && fPrimary['firstName'].errors" class="register__validator">
+                    <div *ngIf="fPrimary['firstName'].touched && fPrimary['firstName'].errors" class="form-validators">
                       <div *ngIf="fPrimary['firstName'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>
@@ -65,7 +65,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>{{ 'register.label.lastName' | translate }}</mat-label>
                     <input matInput placeholder="{{ 'register.label.lastName' | translate }}" formControlName="lastName" class="form-control" required>
-                    <div *ngIf="fPrimary['lastName'].touched && fPrimary['lastName'].errors" class="register__validator">
+                    <div *ngIf="fPrimary['lastName'].touched && fPrimary['lastName'].errors" class="form-validators">
                       <div *ngIf="fPrimary['lastName'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>
@@ -97,7 +97,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>{{ 'register.label.password' | translate }}</mat-label>
                     <input matInput type="password" placeholder="{{ 'register.label.password' | translate }}" formControlName="password" class="form-control" required />
-                    <div *ngIf="fPass['password'].touched && fPass['password'].errors" class="register__validator">
+                    <div *ngIf="fPass['password'].touched && fPass['password'].errors" class="form-validators">
                       <div *ngIf="fPass['password'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>
@@ -113,7 +113,7 @@
                   <mat-form-field appearance="outline" color="accent">
                     <mat-label>{{ 'register.label.confirmPassword' | translate }}</mat-label>
                     <input matInput type="password" placeholder="{{ 'register.label.confirmPassword' | translate }}" formControlName="confirmPassword" class="form-control" required />
-                    <div *ngIf="fPass['confirmPassword'].touched && fPass['confirmPassword'].errors" class="register__validator">
+                    <div *ngIf="fPass['confirmPassword'].touched && fPass['confirmPassword'].errors" class="form-validators">
                       <div *ngIf="fPass['confirmPassword'].errors['required']">
                         {{ 'register.validation.required' | translate }}
                       </div>

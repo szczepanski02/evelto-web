@@ -1,3 +1,4 @@
+import { ProfilePasswordComponent } from './profile-password/profile-password.component';
 import { ToastMessageService } from 'src/app/shared/reusable-components/toast-message/toast-message.service';
 import { Router } from '@angular/router';
 import { IRefreshToken } from './../../../shared/interfaces/IUser';
@@ -16,6 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Gender } from 'src/app/shared/constants/gender';
 import { Countries } from 'src/app/shared/constants/countries';
 import { toastMessageType } from 'src/app/shared/constants/toastMessageType';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -45,7 +47,8 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
     private _formBuilder: FormBuilder,
     private cdRef: ChangeDetectorRef,
     private router: Router,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -138,6 +141,18 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   saveChanges(): void {
+    const userDto = {
+      username: this.client?.username,
+      email: this.client?.email,
+      gender: this.client?.userDetails?.gender,
+      birthDate: this.client?.userDetails?.birthDate,
+      phoneNumber: this.client?.userDetails?.phoneNumber,
+      profileImg: this.client?.userDetails?.profileImg,
+      country: this.client?.userDetails?.userAddress?.country,
+      city: this.client?.userDetails?.userAddress?.city,
+      zipCode: this.client?.userDetails?.userAddress?.zipCode,
+      address1: this.client?.userDetails?.userAddress?.address1
+    }
     const updateDto = {
       username: this.fPrimary['username'].value,
       email: this.fPrimary['email'].value,
@@ -150,6 +165,15 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
       zipCode: this.fAddress['zipCode'].value,
       address1: this.fAddress['address1'].value
     }
+    if (updateDto.username === userDto.username && updateDto.email === userDto.email && updateDto.gender === userDto.gender && updateDto.birthDate === userDto.birthDate && updateDto.phoneNumber === userDto.phoneNumber && updateDto.profileImg === userDto.profileImg && updateDto.country === userDto.country && updateDto.city === userDto.city && updateDto.zipCode === userDto.zipCode && updateDto.address1 === userDto.address1) {
+      this.toastMessageService.setMessage(
+        'Profile',
+        'No profile changes detected',
+        toastMessageType.WARN,
+        5
+      );
+      return;
+    }
     this.updateSub = this.userService.updateProfile(updateDto).subscribe(response => {
       this.router.navigate(['/creator/home']);
       this.toastMessageService.setMessage(
@@ -161,4 +185,7 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
   }
 
+  passwordChangeClick() {
+    this.dialog.open(ProfilePasswordComponent);
+  }
 }

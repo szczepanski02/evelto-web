@@ -34,7 +34,7 @@ export class AuthService {
     readonly toastMessageService: ToastMessageService,
     readonly translateService: TranslateService,
     readonly router: Router
-  ) {}
+  ) { }
 
   login(payload: ILoginPayload): void {
     this.http
@@ -136,6 +136,17 @@ export class AuthService {
       toastMessageType.ERROR,
       5
     );
+  }
+
+  deleteRefreshTokenById(id: number): void {
+    this.http.delete(`${this.api}/refreshToken/${id}`).subscribe(response => {
+      this.toastMessageService.setMessage(
+        this.translateService.instant('a'),
+        this.translateService.instant('auth.sessionRemoved'),
+        toastMessageType.INFO,
+        5
+      )
+    });
   }
 
   redirect(includeLSItem: boolean): void {

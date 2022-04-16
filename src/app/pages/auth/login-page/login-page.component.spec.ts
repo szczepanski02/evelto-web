@@ -17,7 +17,14 @@ describe('LoginPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedTranslateModule],
       declarations: [LoginPageComponent],
-      providers: [AuthService, { provide: Router, useValue: mockRouter }],
+      providers: [
+        {
+          provide: AuthService, useValue: {
+            login: () => { },
+          }
+        },
+        { provide: Router, useValue: mockRouter }
+      ],
     }).compileComponents();
   });
 
@@ -25,9 +32,45 @@ describe('LoginPageComponent', () => {
     fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    spyOn(component.authService, 'login');
+    spyOn(window, 'open');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('inputValueChanged', () => {
+    it('should set isSubmitButtonActive = true', () => {
+      expect(component.isSubmitButtonActive).toBeFalsy();
+
+      // GIVEN
+      component.emailValue = 'jan.kowalski@domain.com';
+      component.passwordValue = 'some-password';
+
+      // WHEN
+      component.inputValueChanged();
+
+      // THEN
+      expect(component.isSubmitButtonActive).toBeTruthy();
+    });
+  });
+
+  describe('localStrategyLoginSubmit', () => {
+    it('should call to authService.login', () => {
+      // GIVEN
+      component.emailValue = 'jan.kowalski@domain.com';
+      component.passwordValue = 'some-password';
+
+      // WHEN
+      component.localStrategyLoginSubmit();
+
+      // THEN
+      expect(component.authService.login).toHaveBeenCalledOnceWith({
+        email: component.emailValue,
+        password: component.passwordValue
+      });
+    });
   });
 });

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  private api = `${environment.apiUrl}/auth`;
+  readonly api = `${environment.apiUrl}/auth`;
 
   emailValue = '';
   passwordValue = '';
@@ -18,7 +18,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   localAuthSubscription?: Subscription;
 
   constructor(
-    private readonly authService: AuthService,
+    readonly authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   inputValueChanged(): void {
-    if(this.emailValue.length > 6 && this.passwordValue.length > 4) {
+    if (this.emailValue.length > 6 && this.passwordValue.length > 4) {
       this.isSubmitButtonActive = true;
     } else {
       this.isSubmitButtonActive = false;
@@ -46,9 +46,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   handleKeyUp(e: any) {
-    if(e.keyCode === 13 && this.isSubmitButtonActive){
+    if (e.keyCode === 13 && this.isSubmitButtonActive) {
       this.localStrategyLoginSubmit();
-   }
+    }
   }
 
 }

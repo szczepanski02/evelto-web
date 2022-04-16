@@ -13,6 +13,7 @@ describe('RegisterPageComponent', () => {
   let fixture: ComponentFixture<RegisterPageComponent>;
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedTranslateModule],
       declarations: [RegisterPageComponent],
@@ -20,10 +21,8 @@ describe('RegisterPageComponent', () => {
         {
           provide: AuthService,
           useValue: {
-            register(data: IRegisterPayload) {
-              return;
-            },
-          },
+            register: () => { }
+          }
         },
         {
           provide: LangService,
@@ -42,9 +41,114 @@ describe('RegisterPageComponent', () => {
     fixture = TestBed.createComponent(RegisterPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    spyOn(component.authService, 'register');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('ngOnInit', () => {
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should set forms', () => {
+      // WHEN
+      component.ngOnInit();
+
+      // THEN
+      expect(component.primaryAccountFormData).toBeDefined();
+      expect(component.passwordsAccountFormData).toBeDefined();
+      expect(component.detailsAccountFormData).toBeDefined();
+      expect(component.addressAccountFormData).toBeDefined();
+    });
   });
+
+  describe('validators', () => {
+
+    describe('primary form', () => {
+      it('should throw required errors', () => {
+        expect(component.fPrimary['username'].hasError('required')).toBeTruthy();
+        expect(component.fPrimary['firstName'].hasError('required')).toBeTruthy();
+        expect(component.fPrimary['lastName'].hasError('required')).toBeTruthy();
+      });
+      it('should throw minLength erorrs', () => {
+        // GIVEN
+        component.primaryAccountFormData.patchValue({
+          username: 'a',
+          firstName: 'a',
+          lastName: 'a'
+        });
+        // EXPECT
+        expect(component.fPrimary['username'].hasError('minlength')).toBeTruthy();
+        expect(component.fPrimary['firstName'].hasError('minlength')).toBeTruthy();
+        expect(component.fPrimary['lastName'].hasError('minlength')).toBeTruthy();
+      })
+      it('should throw maxLength errors', () => {
+        // GIVEN
+        component.primaryAccountFormData.patchValue({
+          username: '123456789123456789',
+          firstName: '123456789123456789123456789123456789123456789',
+          lastName: '123456789123456789123456789123456789123456789'
+        });
+        // EXPECT
+        expect(component.fPrimary['username'].hasError('maxlength')).toBeTruthy();
+        expect(component.fPrimary['firstName'].hasError('maxlength')).toBeTruthy();
+        expect(component.fPrimary['lastName'].hasError('maxlength')).toBeTruthy();
+      });
+    });
+
+    describe('passwords form', () => {
+      it('should throw required errors', () => {
+        expect(component.fPass['password'].hasError('required')).toBeTruthy();
+        expect(component.fPass['confirmPassword'].hasError('required')).toBeTruthy();
+      });
+      it('should throw minLength errors', () => {
+        // GIVEN
+        component.passwordsAccountFormData.patchValue({
+          password: 'wrong',
+        });
+        // THEN
+        expect(component.fPass['password'].hasError('minlength')).toBeTruthy();
+      });
+      it('should throw maxlength errors', () => {
+        // GIVEN
+        component.passwordsAccountFormData.patchValue({
+          password: '12345678912345678912345678912345678912345678912',
+        });
+        // THEN
+        expect(component.fPass['password'].hasError('maxlength')).toBeTruthy();
+      });
+      it('should throw confirmedValidator error', () => {
+        // GIVEN
+        // GIVEN
+        component.passwordsAccountFormData.patchValue({
+          password: 'somePassword',
+          confirmPassword: 'someOtherPassword'
+        });
+        expect(component.fPass['confirmPassword'].hasError('confirmedValidator')).toBeTruthy();
+      });
+    });
+  });
+
+  describe('submit', () => {
+    it('should call authService.register', () => {
+      // GIVEN
+      component.primaryAccountFormData.patchValue({
+        username: 'janKowalski',
+        firstName: 'Jan',
+        lastName: 'Kowalski',
+        email: 'jan.kowalski@domain.com'
+      });
+      component.passwordsAccountFormData.patchValue({
+        password: 'somePassword',
+        confirmPassword: 'somePassword'
+      });
+
+      // WHEN
+      component.submit();
+
+      // THEN
+      expect(component.authService.register).toHaveBeenCalledTimes(1);
+    });
+  });
+
 });

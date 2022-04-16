@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProfileSessionsComponent } from './profile-sessions/profile-sessions.component';
+import { ProfilePasswordComponent } from './profile-password/profile-password.component';
+import { ProfileCompleterComponent } from './profile-completer/profile-completer.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileSessionsComponent],
+  declarations: [ProfileComponent, ProfileSessionsComponent, ProfilePasswordComponent, ProfileCompleterComponent],
   imports: [
     CommonModule,
     SharedModule,

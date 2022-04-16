@@ -10,7 +10,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Countries } from 'src/app/shared/constants/countries';
 import { Gender } from 'src/app/shared/constants/gender';
-import { ConfirmedValidator } from './confirmed-validator';
+import { ConfirmedValidator } from '../../../shared/validators/confirmed-validator';
 
 @Component({
   selector: 'app-register-page',
@@ -30,10 +30,10 @@ export class RegisterPageComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private readonly authService: AuthService,
+    readonly authService: AuthService,
     private readonly langService: LangService,
     private cdRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.primaryAccountFormData = this._formBuilder.group({
@@ -138,6 +138,4 @@ export class RegisterPageComponent implements OnInit, AfterViewChecked {
       this.authService.register(newUser);
     }
   }
-
-  // lang, accountType
 }

@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private readonly toastMessageService: ToastMessageService,
     private readonly translateService: TranslateService
-  ) {}
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.userHasAccess(state.url, state);
@@ -31,14 +31,14 @@ export class AuthGuard implements CanActivate {
     this.authService.setRedirectUrl(redirectUrl);
     return this.authService.getUserFromToken().pipe(
       map(response => {
-        if(response.body) {
-          if(!this.handleActiveCheckClientAccount(response.body, state)) {
+        if (response.body) {
+          if (!this.handleActiveCheckClientAccount(response.body, state)) {
             return false;
           }
           this.userDataSetup(response.body);
         }
         const accountType = response.body.accountType;
-        if(accountType === AccountType.CREATOR) {
+        if (accountType === AccountType.CREATOR) {
           this.authService.deleteRedirectUrl();
           return true;
         } else {
@@ -56,11 +56,11 @@ export class AuthGuard implements CanActivate {
   }
 
   handleActiveCheckClientAccount(user: IAuthorizatedUser, state: RouterStateSnapshot): boolean {
-    if(user.isActive === ClientIsActive.IS_ACTIVE) {
+    if (user.isActive === ClientIsActive.IS_ACTIVE) {
       return true;
     }
-    if(user.isActive === ClientIsActive.PROFILE_NOT_COMPLETE) {
-      if(state.url === RedirectIfNotActiveEnum.PROFILE_NOT_COMPLETE) {
+    if (user.isActive === ClientIsActive.PROFILE_NOT_COMPLETE) {
+      if (state.url === RedirectIfNotActiveEnum.PROFILE_NOT_COMPLETE) {
         return true;
       }
       this.toastMessageService.setMessage(

@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { toastMessageType } from '../../constants/toastMessageType';
 import { IToastMessage, ToastMessageService } from './toast-message.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class ToastMessageComponent implements OnInit, OnDestroy {
   messages: IToastMessage[] = [];
   messagesSubscription?: Subscription;
 
-  constructor(private toastMessageService: ToastMessageService) { }
+  constructor(readonly toastMessageService: ToastMessageService) { }
 
   ngOnInit(): void {
     this.messagesSubscription = this.toastMessageService.getMessages().subscribe(message => {
@@ -22,9 +21,6 @@ export class ToastMessageComponent implements OnInit, OnDestroy {
   }
 
   handleNewMessage(message: IToastMessage): void {
-    // if(this.messages[this.messages.length -1]?.content === message.content) {
-    //   return;
-    // }
     this.messages.push(message);
     this.stackScrollTo();
     setTimeout(() => {
@@ -43,7 +39,7 @@ export class ToastMessageComponent implements OnInit, OnDestroy {
 
   stackScrollTo(): void {
     const messagesWall = document.querySelector<HTMLElement>('.toast-message__wall');
-    if(!messagesWall) {
+    if (!messagesWall) {
       return;
     }
     messagesWall.scroll({

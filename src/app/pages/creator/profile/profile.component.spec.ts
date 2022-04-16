@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { _userDBMock } from './../../../shared/services/__mocks__/users.mock';
 import { of } from 'rxjs';
 import { ProfileComponent } from './profile.component';
@@ -10,6 +11,10 @@ import { FormBuilder } from '@angular/forms';
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
+
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +30,10 @@ describe('ProfileComponent', () => {
             },
           },
         },
+        {
+          provide: Router,
+          useValue: mockRouter,
+        }
       ],
     }).compileComponents();
   });

@@ -79,3 +79,12 @@ h1,
 h2 {
   margin-bottom: 5px !important;
 }
+
+.form-validators {
+  padding-top: 10px;
+
+  & div {
+    font-size: 12px;
+    color: var(--primary-yellow);
+  }
+}

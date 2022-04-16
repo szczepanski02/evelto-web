@@ -35,7 +35,8 @@
     "accountError": "Wystąpił problem z twoim kontem, proszę skontaktuj się z administracją",
     "alreadyLoggedIn": "Jesteś już zalogowany",
     "signInViaGoogleError": "Wystąpił błąd podczas logowania przez google, proszę skontaktuj się z nami",
-    "noAuthorized": "Nie masz odpowiednich uprawnień do wykonania tej operacji"
+    "noAuthorized": "Nie masz odpowiednich uprawnień do wykonania tej operacji",
+    "sessionRemoved": "Sesja została usunięta pomyślnie"
   },
   "lang": {
     "notificationTitle": "Aplikacja",
@@ -49,6 +50,7 @@
       "lastName": "Nazwisko",
       "password": "Hasło",
       "confirmPassword": "Potwierdź hasło",
+      "currentPassword": "Aktualne hasło",
       "dateOfBirth": "Data urodzin",
       "gender": "Płeć",
       "male": "Mężczyzna",
@@ -75,5 +77,14 @@
     "required": "* wszystkie pola oznaczone gwiazką są wymagane",
     "completed": "Twoje konto zostało skompletowane, dziękujemy za poświęcenie swojego czasu. Ufamy, że dane zostały wypełnione zgodnie z prawdą.",
     "formComplete": "Formularz został uzupełniony:"
+  },
+  "genders": {
+    "male": "Mężczyzna",
+    "female": "Kobieta",
+    "other": "Inna"
+  },
+  "accountType": {
+    "creator": "Twórca",
+    "client": "Użytkownik"
   }
 }
