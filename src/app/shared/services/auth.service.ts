@@ -141,7 +141,7 @@ export class AuthService {
   deleteRefreshTokenById(id: number): void {
     this.http.delete(`${this.api}/refreshToken/${id}`).subscribe(response => {
       this.toastMessageService.setMessage(
-        this.translateService.instant('a'),
+        this.translateService.instant('auth.notificationTitle'),
         this.translateService.instant('auth.sessionRemoved'),
         toastMessageType.INFO,
         5

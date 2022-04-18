@@ -1,6 +1,6 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastMessageService } from 'src/app/shared/reusable-components/toast-message/toast-message.service';
@@ -23,6 +23,7 @@ export class ProfilePasswordComponent implements OnInit, OnDestroy {
     readonly dialogRef: MatDialogRef<ProfilePasswordComponent>,
     readonly toastMessageService: ToastMessageService,
     private _formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +58,7 @@ export class ProfilePasswordComponent implements OnInit, OnDestroy {
     const payload = { ...this.passwordsAccountFormData.value };
     this.submitSub = this.userService.changePassword(payload).subscribe(response => {
       this.toastMessageService.setMessage(
-        'Account',
+        this.translateService.instant('profile.notificationTitle'),
         response.body,
         toastMessageType.INFO,
         5

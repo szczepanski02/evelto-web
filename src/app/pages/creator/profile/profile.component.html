@@ -1,11 +1,11 @@
 <div class="profile slide-in-right">
   <div class="profile__actions">
     <button mat-raised-button color="primary-green-btn" [hideIfCreatedBy]="['GOOGLE', 'FACEBOOK']" (click)="passwordChangeClick()">
-      Change password
+      {{ 'profile.password.title' | translate }}
     </button>
-    <button mat-raised-button color="accent" [disabled]="!(this.primaryAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)" (click)="saveChanges()">Save changes</button>
+    <button mat-raised-button color="accent" [disabled]="!(this.primaryAccountFormData.valid && this.detailsAccountFormData.valid && this.addressAccountFormData.valid)" (click)="saveChanges()">{{ 'profile.saveChanges' | translate }}</button>
 
-    <button mat-raised-button color="warn" (click)="loadDataIntoInputs()">Reset values</button>
+    <button mat-raised-button color="warn" (click)="loadDataIntoInputs()">{{ 'profile.resetValues' | translate }}</button>
   </div>
   <div class="row">
     <div>
@@ -13,7 +13,7 @@
     </div>
 
     <mat-card class="profile__main">
-      <h2>Main account properties</h2>
+      <h2>{{ 'profile.mainAccountProperties' | translate }}</h2>
       <div class="divider-primary"></div>
       <div class="profile__form">
         <form [formGroup]="primaryAccountFormData">
@@ -57,7 +57,7 @@
   <div class="row">
     <!-- DETAILS -->
     <mat-card class="profile__details">
-      <h2>Details</h2>
+      <h2>{{ 'register.stepTitle.details' | translate }}</h2>
       <div class="divider-primary-yellow"></div>
       <div class="profile__form">
         <form [formGroup]="detailsAccountFormData">
@@ -84,8 +84,8 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" color="accent">
-              <mat-label>Phone number</mat-label>
-              <input matInput placeholder="Phone number" formControlName="phoneNumber" class="form-control" />
+              <mat-label>{{ 'register.label.phoneNumber' | translate }}</mat-label>
+              <input matInput placeholder="{{ 'register.label.phoneNumber' | translate }}" formControlName="phoneNumber" class="form-control" />
             </mat-form-field>
           </div>
         </form>
@@ -94,7 +94,7 @@
 
     <!-- ADDRESS -->
     <mat-card class="profile__details">
-      <h2>Address</h2>
+      <h2>{{ 'register.stepTitle.address' | translate }}</h2>
       <div class="divider-accent"></div>
       <div class="profile__form">
         <form [formGroup]="addressAccountFormData">
@@ -133,12 +133,12 @@
   <div class="row-2">
 
     <mat-card class="profile__creator">
-      <h2>Creator</h2>
+      <h2>{{ 'profile.creator' | translate }}</h2>
       <div class="divider-primary-green"></div>
     </mat-card>
 
     <mat-card class="profile__sessions">
-      <h2>Sessions</h2>
+      <h2>{{ 'profile.sessions.title' | translate }}</h2>
       <div class="divider-primary"></div>
       <app-profile-sessions *ngIf="refreshTokens" [refreshTokens]="refreshTokens"></app-profile-sessions>
     </mat-card>

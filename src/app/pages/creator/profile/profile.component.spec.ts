@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { _userDBMock } from './../../../shared/services/__mocks__/users.mock';
 import { of } from 'rxjs';
@@ -22,6 +23,12 @@ describe('ProfileComponent', () => {
       declarations: [ProfileComponent],
       providers: [
         FormBuilder,
+        {
+          provide: MatDialog,
+          useValue: {
+            open: jasmine.createSpy('open')
+          }
+        },
         {
           provide: UserService,
           useValue: {

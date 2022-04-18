@@ -1,3 +1,7 @@
+import { SharedTranslateModule } from 'src/app/shared/shared-translate.module';
+import { FormBuilder } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePasswordComponent } from './profile-password.component';
@@ -8,9 +12,22 @@ describe('ProfilePasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfilePasswordComponent ]
+      imports: [
+        HttpClientTestingModule,
+        SharedTranslateModule
+      ],
+      declarations: [ProfilePasswordComponent],
+      providers: [
+        FormBuilder,
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: jasmine.createSpy('close')
+          }
+        }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

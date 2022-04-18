@@ -1,3 +1,7 @@
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { JwtService } from './../../../shared/services/jwt.service';
+import { ProfileCompleterComponent } from './profile-completer/profile-completer.component';
 import { ProfilePasswordComponent } from './profile-password/profile-password.component';
 import { ToastMessageService } from 'src/app/shared/reusable-components/toast-message/toast-message.service';
 import { Router } from '@angular/router';
@@ -49,6 +53,8 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
     private router: Router,
     private toastMessageService: ToastMessageService,
     private dialog: MatDialog,
+    private jwtService: JwtService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +70,15 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
           response.body.isActive === ClientIsActive.PROFILE_NOT_COMPLETE
         ) {
           // stepper
-          console.log('not complete');
+          this.dialog.open(ProfileCompleterComponent,
+            {
+              disableClose: true,
+              data: {
+                firstName: response.body.firstName,
+                lastName: response.body.lastName
+              }
+            }
+          );
         }
       });
 
@@ -106,11 +120,11 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   loadDataIntoInputs(): void {
-    this.primaryAccountFormData!.setValue({
+    this.primaryAccountFormData!.patchValue({
       username: this.client?.username,
       email: this.client?.email,
     });
-    this.detailsAccountFormData!.setValue({
+    this.detailsAccountFormData!.patchValue({
       profileImg: this.client?.userDetails?.profileImg,
       birthDate: this.client?.userDetails?.birthDate,
       gender: this.client?.userDetails?.gender,
@@ -118,7 +132,7 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
         ? this.client?.userDetails?.phoneNumber
         : null,
     });
-    this.addressAccountFormData!.setValue({
+    this.addressAccountFormData!.patchValue({
       country: this.client?.userDetails?.userAddress?.country,
       city: this.client?.userDetails?.userAddress?.city,
       zipCode: this.client?.userDetails?.userAddress?.zipCode,
@@ -167,8 +181,8 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
     if (updateDto.username === userDto.username && updateDto.email === userDto.email && updateDto.gender === userDto.gender && updateDto.birthDate === userDto.birthDate && updateDto.phoneNumber === userDto.phoneNumber && updateDto.profileImg === userDto.profileImg && updateDto.country === userDto.country && updateDto.city === userDto.city && updateDto.zipCode === userDto.zipCode && updateDto.address1 === userDto.address1) {
       this.toastMessageService.setMessage(
-        'Profile',
-        'No profile changes detected',
+        this.translateService.instant('profile.notificationTitle'),
+        this.translateService.instant('profile.noChanges'),
         toastMessageType.WARN,
         5
       );
@@ -176,8 +190,9 @@ export class ProfileComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
     this.updateSub = this.userService.updateProfile(updateDto).subscribe(response => {
       this.router.navigate(['/creator/home']);
+      this.jwtService.setAccessToken(null);
       this.toastMessageService.setMessage(
-        'Profile',
+        this.translateService.instant('profile.notificationTitle'),
         response.body,
         toastMessageType.INFO,
         5

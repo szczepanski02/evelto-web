@@ -1,0 +1,25 @@
+.completer {
+  max-width: 320px;
+
+  &__form {
+    &-row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    & mat-form-field {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+
+    & button:nth-child(2) {
+      margin-left: 10px;
+    }
+  }
+}

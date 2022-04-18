@@ -59,13 +59,14 @@
       "country": "Kraj",
       "city": "Miasto",
       "zipCode": "Kod pocztowy",
-      "numberSt": "Numer, ul."
+      "numberSt": "Numer, ul.",
+      "phoneNumber": "Numer telefonu"
     },
     "stepTitle": {
       "main": "Podstawowe",
       "security": "Bezpieczeństwo",
       "details": "Detale",
-      "address": "Address",
+      "address": "Adres",
       "done": "Podsumowanie"
     },
     "validation": {
@@ -77,6 +78,27 @@
     "required": "* wszystkie pola oznaczone gwiazką są wymagane",
     "completed": "Twoje konto zostało skompletowane, dziękujemy za poświęcenie swojego czasu. Ufamy, że dane zostały wypełnione zgodnie z prawdą.",
     "formComplete": "Formularz został uzupełniony:"
+  },
+  "profile": {
+    "notificationTitle": "Profil",
+    "saveChanges": "Zapisz zmiany",
+    "resetValues": "Resetuj zmiany",
+    "mainAccountProperties": "Główne właściwości konta",
+    "creator": "Twórca",
+    "noChanges": "Nie wykryto żadnych zmian",
+    "completer": {
+      "hi": "Cześć!",
+      "subTitle": "Zanim zaczniesz, uzupełnij swój profil",
+      "askForHelp": "Zapytaj o pomoc"
+    },
+    "password": {
+      "title": "Zmień hasło"
+    },
+    "sessions": {
+      "title": "Sesje",
+      "ipAddress": "IP",
+      "createdAt": "Utworzono"
+    }
   },
   "genders": {
     "male": "Mężczyzna",

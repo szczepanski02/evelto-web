@@ -1,1 +1,47 @@
-<p>profile-completer works!</p>
+<div class="completer">
+  <h1 class="mat-primary-green-color">{{ 'profile.completer.hi' | translate }}</h1>
+  <h2>{{ 'profile.completer.subTitle' | translate }}</h2>
+  <div class="divider-primary-green"></div>
+
+  <form [formGroup]="completerForm">
+    <div class="completer__form">
+      <div class="completer__form-row">
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{ 'register.label.username' | translate }}</mat-label>
+          <input matInput placeholder="{{ 'register.label.username' | translate }}" formControlName="username" class="form-control" required />
+          <div *ngIf="getForm['username'].touched && getForm['username'].errors" class="form-validators">
+            <div *ngIf="getForm['username'].errors['required']">
+              {{ 'register.validation.required' | translate }}
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{ 'register.label.firstName' | translate }}</mat-label>
+          <input matInput placeholder="{{ 'register.label.firstName' | translate }}" formControlName="firstName" class="form-control" required />
+          <div *ngIf="getForm['firstName'].touched && getForm['firstName'].errors" class="form-validators">
+            <div *ngIf="getForm['firstName'].errors['required']">
+              {{ 'register.validation.required' | translate }}
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{ 'register.label.lastName' | translate }}</mat-label>
+          <input matInput placeholder="{{ 'register.label.lastName' | translate }}" formControlName="lastName" class="form-control" required />
+          <div *ngIf="getForm['lastName'].touched && getForm['lastName'].errors" class="form-validators">
+            <div *ngIf="getForm['lastName'].errors['required']">
+              {{ 'register.validation.required' | translate }}
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <div class="completer__actions">
+    <button mat-raised-button mat-dialog-close color="primary-yellow-btn">{{ 'profile.completer.askForHelp' | translate }}</button>
+    <button mat-raised-button color="accent" [disabled]="!this.completerForm.valid" (click)="submit()">{{ 'buttons.update' | translate }}</button>
+  </div>
+</div>

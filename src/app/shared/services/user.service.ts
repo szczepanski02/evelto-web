@@ -38,9 +38,11 @@ interface IUpdateUserPassword {
 }
 
 export interface IUpdateUserProfile {
-  username: string;
-  email: string;
-  gender: Gender;
+  username?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  gender?: Gender;
   birthDate?: Date;
   phoneNumber?: string;
   country?: string;

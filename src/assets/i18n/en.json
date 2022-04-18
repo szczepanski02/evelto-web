@@ -59,7 +59,8 @@
       "country": "Country",
       "city": "City",
       "zipCode": "Zip code",
-      "numberSt": "Number, st."
+      "numberSt": "Number, st.",
+      "phoneNumber": "Phone number"
     },
     "stepTitle": {
       "main": "Main",
@@ -77,6 +78,27 @@
     "required": "* required inputs are advisable by asterisk",
     "completed": "Your account has been completed, thanks for your time. We hope, you have completed truthful data.",
     "formComplete": "Form is complete:"
+  },
+  "profile": {
+    "notificationTitle": "Profile",
+    "saveChanges": "Save changes",
+    "resetValues": "Reset values",
+    "mainAccountProperties": "Main account properties",
+    "creator": "Creator",
+    "noChanges": "No profile changes detected",
+    "completer": {
+      "hi": "Hi!",
+      "subTitle": "Before you start, please complete your profile",
+      "askForHelp": "Ask for help"
+    },
+    "password": {
+      "title": "Change password"
+    },
+    "sessions": {
+      "title": "Sessions",
+      "ipAddress": "Ip address",
+      "createdAt": "Created at"
+    }
   },
   "genders": {
     "male": "Male",
